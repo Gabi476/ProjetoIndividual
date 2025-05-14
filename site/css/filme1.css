@@ -16,7 +16,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 60px 30px;
-    background: #da7d49;
+    background: #325827;
     color: white;
 }
 
@@ -75,10 +75,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-/* .tinkef3{
-    display: flex;
-    margin-top: 8px;
-} */
+
 .tinkef3 p {
     display: flex;
     font-size: 20px;
@@ -92,13 +89,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -30px;
 }
 
 .img2 img {
     max-width: 100%;
-    width: 1100px;
-    margin-right: 300px;
+    width: 1000px;
+    margin-right: 200px;
     height: auto;
 }
 
@@ -174,19 +170,6 @@ body {
 .quadro4 {
     display: flex;
     background-color: #da7d49;
-    border-radius: 15px;
-    color: white;
-    padding: 20px 30px;
-    text-align: left;
-    width: 1000px;
-    height: 50px;
-    align-items: center;
-    font-size: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-.quadro5 {
-    display: flex;
-    background-color: #c2585a;
     border-radius: 15px;
     color: white;
     padding: 20px 30px;

@@ -6,166 +6,250 @@
 
 body {
     font-family: "Poppins", Arial, sans-serif;
-    font-family: "Poppins", Arial, sans-serif; 
-    background-color: #325827;
-    color: #fff;
+    background-color: white;
+    color: black;
     line-height: 1.5;
 }
 
-/* logo img {
-    max-width: 100%;
-    display: block;
-} */
-
-.header {
-    position: fixed;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-}
-
-.nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Quando tiver .logo {
-    display: flex;
-    align-items: center;
-    height: 48px;
-} */
-
-.navegar .l {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-}
-
-.l a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-li {
-    cursor: pointer;
-}
-
-.login {
-    padding: 0.5rem 1rem;
-    background-color: white;
-    border-radius: 15px;
-    color: black;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.banner {
-    height: 600px;
-    width: 100%;
-    background: url("../img/filme.jpg") center/cover no-repeat;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    color: #fff;
-}
-
-.bannerf {
-    max-width: 800px;
-}
-
-.banner h1 {
-    font-size: 50px;
-    margin-bottom: 5px;
-    margin-left: 150px;
-}
-
-.banner p {
-    font-size: 40px;
-    margin-bottom: 10px;
-    margin-left: 150px;
-}
-
-.sobrefilmes {
+.tinkerf {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 60px 30px;
+    background: #da7d49;
+    color: white;
 }
 
-.filmestext p {
+.tinkerf1 p {
     display: flex;
-    width: 600px;
+    width: 450px;
     margin-left: 50px;
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 20px;
     margin-right: 30px;
     text-align: justify;
 }
 
-.filmestext h2 {
+.tinkerf1 h2 {
     margin-bottom: 20px;
-    font-size: 40px;
+    font-size: 35px;
     margin-left: 50px;
 }
 
-.filmesimg {
+.img1 {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.filmesimg img {
+.img1 img {
     max-width: 100%;
-    width: 300px;
-    height: auto;
-}
-
-.escolha {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    padding: 60px 30px;
-}
-
-.escolha h2 {
-    color: black;
-    font-size: 25px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.filmes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    justify-items: center;
-    margin: 40px auto;
-    max-width: 1000px;
-}
-
-.filmes img {
     width: 200px;
     height: auto;
     border-radius: 10px;
 }
+
+.tinkf1 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.tinkf1 h2 {
+    color: black;
+    font-size: 30px;
+    margin-bottom: 40px;
+    margin-left: 100px;
+}
+
+.tinkf1 p {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 40px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.tinkef2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* .tinkef3{
+    display: flex;
+    margin-top: 8px;
+} */
+.tinkef3 p {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 40px;
+    margin-left: 100px;
+    margin-right: 300px;
+    text-align: justify;
+}
+
+.img2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -30px;
+}
+
+.img2 img {
+    max-width: 100%;
+    width: 1100px;
+    margin-right: 300px;
+    height: auto;
+}
+
+
+.temas {
+    text-align: left;
+    padding: 60px 30px;
+}
+
+.temas h2 {
+    font-size: 30px;
+    margin-bottom: 40px;
+    margin-left: 100px;
+}
+
+.quadros {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.quadros p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    gap: 20px;
+}
+
+.quadro1 {
+    display: flex;
+    background-color: #c2585a;
+    border-radius: 15px;
+    color: white;
+    padding: 20px 30px;
+    text-align: left;
+    width: 1000px;
+    height: 50px;
+    align-items: center;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quadro2 {
+    display: flex;
+    background-color: #7cbebd;
+    border-radius: 15px;
+    color: white;
+    padding: 20px 30px;
+    text-align: left;
+    width: 1000px;
+    height: 50px;
+    align-items: center;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quadro3 {
+    display: flex;
+    background-color: #70b63c;
+    border-radius: 15px;
+    color: white;
+    padding: 20px 30px;
+    text-align: left;
+    width: 1000px;
+    height: 50px;
+    align-items: center;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quadro4 {
+    display: flex;
+    background-color: #da7d49;
+    border-radius: 15px;
+    color: white;
+    padding: 20px 30px;
+    text-align: left;
+    width: 1000px;
+    height: 50px;
+    align-items: center;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.quadro5 {
+    display: flex;
+    background-color: #c2585a;
+    border-radius: 15px;
+    color: white;
+    padding: 20px 30px;
+    text-align: left;
+    width: 1000px;
+    height: 50px;
+    align-items: center;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quadro h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.trailer h2 {
+    font-size: 30px;
+    margin-bottom: 40px;
+    margin-left: 100px;
+}
+.trailer .video{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.letra {
+  padding: 60px 30px;
+}
+
+.letra h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.letratext {
+  max-width: 800px;
+  margin: 0 auto;
+  column-count: 2;          
+  column-gap: 60px;          
+  text-align: left;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.proximo{
+    display: flex;
+    background: #325827;
+    height: 180px;
+    align-items: center;
+    justify-content: center;
+}
+.proximo img{
+    height: 150px;
+}
 .footer{
-    background-color: #2b4b22;
+    background-color: #325827;
     display: flex;
     text-align: center;
     justify-content: center;
     height: 90px;  
+    color: white;
     align-items: end;
-}
-
-.banner p{
-    font-size: 40px;
-    margin-bottom: 10px;
-    margin-left: 150px;
 }
