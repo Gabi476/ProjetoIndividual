@@ -5,6 +5,7 @@
 }
 
 body {
+    font-family: "Poppins", Arial, sans-serif;
     font-family: "Poppins", Arial, sans-serif; 
     background-color: #325827;
     color: #fff;
@@ -67,13 +68,14 @@ li {
 .banner {
     height: 600px;
     width: 100%;
-    background: url("../img/img_banner.jpg") center/cover no-repeat;
+    background: url("../img/filme.jpg") center/cover no-repeat;
     display: flex;
     justify-content: start;
     align-items: center;
     color: #fff;
 }
-.bannert{
+
+.bannerf {
     max-width: 800px;
 }
 
@@ -82,18 +84,21 @@ li {
     margin-bottom: 5px;
     margin-left: 150px;
 }
-.banner p{
+
+.banner p {
     font-size: 40px;
     margin-bottom: 10px;
     margin-left: 150px;
 }
-.sobretink{
+
+.sobrefilmes {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 60px 30px;
 }
-.sobretinktext p{
+
+.filmestext p {
     display: flex;
     width: 600px;
     margin-left: 50px;
@@ -102,103 +107,53 @@ li {
     margin-right: 30px;
     text-align: justify;
 }
-.sobretinktext h2{
+
+.filmestext h2 {
     margin-bottom: 20px;
     font-size: 40px;
     margin-left: 50px;
 }
 
-.sobretinki{
+.filmesimg {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.sobretinki img{
+
+.filmesimg img {
     max-width: 100%;
     width: 300px;
     height: auto;
 }
-.caracteristicas {
-    background-color: white;
-    text-align: center;
-    padding: 60px 30px;
-}
 
-.caracteristicas h2 {
-    color: black;
-    font-size: 30px;
-    margin-bottom: 40px;
-}
-
-.quadros {
+.escolha {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.quadro {
-    background-color: #0c760c;
-    border-radius: 15px;
-    color: white;
-    padding: 20px 30px;
-    max-width: 700px;
-    text-align: left;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.quadro h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.quadro p {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.ensino,
-.importancia {
-    display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 60px 30px;
-    gap: 50px; 
-}
-
-.auto,
-.amizade {
-    max-width: 500px;
-}
-
-.auto h2,
-.amizade h2 {
-    margin-bottom: 20px;
-    font-size: 30px;
-}
-
-.auto p,
-.amizade p {
-    font-size: 20px;
-    text-align: justify;
-}
-
-.autoimg img,
-.amizadeimg img {
-    width: 250px;
-    height: auto;
-    border-radius: 8px;
-}
-
-.bannermusica {
-    height: 600px;
-    width: 100%;
-    background: url("../img/martelo2.jpg") center/cover no-repeat;
-    display: flex;
-    justify-content: start;
     align-items: center;
-    color: #fff;
+    background: #fff;
+    padding: 60px 30px;
+}
+
+.escolha h2 {
+    color: black;
+    font-size: 25px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.filmes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    justify-items: center;
+    margin: 40px auto;
+    max-width: 1000px;
+}
+
+.filmes img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
 }
 .footer{
     background-color: #2b4b22;
@@ -207,4 +162,10 @@ li {
     justify-content: center;
     height: 90px;  
     align-items: end;
+}
+
+.banner p{
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-left: 150px;
 }
