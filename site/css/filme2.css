@@ -75,6 +75,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 /* .tinkef3{
     display: flex;
     margin-top: 8px;
@@ -184,6 +185,7 @@ body {
     font-size: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 .quadro5 {
     display: flex;
     background-color: #c2585a;
@@ -209,47 +211,69 @@ body {
     margin-bottom: 40px;
     margin-left: 100px;
 }
-.trailer .video{
+
+.trailer .video {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.musica h2 {
+    font-size: 30px;
+    margin-bottom: 40px;
+    margin-left: 100px;
+}
+
 .letra {
-  padding: 60px 30px;
+    padding: 60px 30px;
 }
 
 .letra h2 {
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 30px;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 30px;
 }
 
 .letratext {
-  max-width: 800px;
-  margin: 0 auto;
-  column-count: 2;          
-  column-gap: 60px;          
-  text-align: left;
-  font-size: 18px;
-  line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    column-count: 2;
+    column-gap: 60px;
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.6;
 }
-.proximo{
+
+.avaliar {
+    display: flex;
+    justify-content: center;
+}
+
+.avaliar h2 {
+    font-size: 30px;
+    margin-bottom: 40px
+}
+
+.proximo {
     display: flex;
     background: #325827;
     height: 180px;
     align-items: center;
     justify-content: center;
 }
-.proximo img{
-    height: 150px;
+.proximo .seta{
+
 }
-.footer{
+.proximo img {
+    height: 70px;
+}
+
+.footer {
     background-color: #325827;
     display: flex;
     text-align: center;
     justify-content: center;
-    height: 90px;  
+    height: 90px;
     color: white;
     align-items: end;
 }
