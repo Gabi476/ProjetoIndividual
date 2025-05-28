@@ -1,0 +1,161 @@
+/* RESET GERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(to bottom right, #f7f9f3, #e6efe0);
+  color: #2e2e2e;
+  padding-top: 80px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(34, 49, 34, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navegar .l {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.l a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.l a:hover {
+  color: #b8e986;
+}
+
+li {
+  cursor: pointer;
+}
+
+.login {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(to right, #b8e986, #88c066);
+  border: none;
+  border-radius: 20px;
+  color: #2e4a1b;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* CONTAINER PRINCIPAL */
+#pontuacaoEJogo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+/* CARTÕES BASE */
+#jogo,
+#pontuacao {
+  padding: 24px;
+  border-radius: 16px;
+  width: 370px;
+  min-height: 400px;
+}
+
+/* CARTÃO DE PERGUNTA */
+#jogo {
+  background: #7a944a;
+  color: white; 
+}
+
+/* CARTÃO DE PONTUAÇÃO */
+#pontuacao {
+  background: #fff;
+  border: 2px solid #3b5d2c;
+}
+
+/* TÍTULOS E TEXTOS */
+#jogo span.text-bold,
+#pontuacao h2,
+#pontuacao span {
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+#jogo p,
+#pontuacao p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+/* RADIO BUTTONS */
+input[type="radio"] {
+  margin: 10px 10px 10px 0;
+  transform: scale(1.3);
+  accent-color: #d7f5be;
+}
+
+/* BOTÕES */
+button {
+  margin-top: 14px;
+  padding: 12px 20px;
+  background:  #4e7332;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #a0b992;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  #pontuacaoEJogo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #jogo,
+  #pontuacao {
+    width: 90%;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .navegar .l {
+    flex-direction: column;
+    align-items: center;
+  }
+}

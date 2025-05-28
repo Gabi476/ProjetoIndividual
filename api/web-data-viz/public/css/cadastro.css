@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    font-family: "Poppins", Arial, sans-serif;
+    color: #fff;
+    line-height: 1.5;
+}
+.bannerl {
+    height: 800px;
+    width: 100%;
+    background: url("../assets/img/filme_login1.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: #fff;
+    background-size:cover;
+}
+
+.quadrolo {
+    display: flex;
+    padding: 20px;
+    width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #5a3b1b;
+    border-radius: 18px;
+    height: 750px;
+    background-color: rgba(90, 59, 27, 0.4);
+}
+
+.quadrologleft {
+    width: 100%;
+    padding: 2rem;
+    color: black;
+}
+
+.quadrologleft h2 {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-size: 40px;
+    color: #2c2414;
+}
+
+.quadrologleft p {
+    font-size: 20px;
+}
+
+.quadrologleft input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #585555c1;
+}
+ /* .sexo{
+    justify-content: start;
+    align-items: center;
+} */
+label{
+    display: flex;
+}
+#radio_fem{
+    margin-right: 450px;
+    margin-bottom: 0.5px;
+}
+#radio_masc{
+    margin-right: 450px;
+    margin-bottom: 0.5px;
+}
+.quadrologleft span{
+    font-size: 25x;
+    margin-left: 330px;
+}
+.entrar {
+    display: flex;
+    background-color: #585555e2;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-left:300px;
+    margin-top: 40px;
+}
