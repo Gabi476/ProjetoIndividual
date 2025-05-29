@@ -1,10 +1,10 @@
-var conexao = require("../database/config")
+var conexao = require("../database/config");
 
 function salvar(req, res) {
-    var queries = respostas.map(resp => {
-        var {
-            idPergunta, idAlternativa
-        } = res;
+    var { idUsuario, respostas } = req.body; // Obtenha idUsuario e respostas do corpo da requisição
+
+    var queries = respostas.map(resposta => { // Iterar sobre cada resposta
+        var { idPergunta, idAlternativa } = resposta; // Obter dados da resposta individual
         var instrucao =
             `INSERT INTO resposta_usuario (fkusuario, fkpergunta, fk_alternativa_escolhida)
             VALUES (${idUsuario}, ${idPergunta}, ${idAlternativa})

@@ -10,22 +10,20 @@ function salvar(req, res) {
     console.log("Respostas recebidas:", req.body);
     console.log("Salvando resposta: ", instrucao);
 
-    quiz1Model.salvar(req,res)
+    quiz1Model.salvar(req, res)
         .then(
             function (resultado) {
                 res.json(resultado);
             }
         ).catch(
             function (erro) {
-                console.log(erro);
-                console.log(
-                    "n/Houve um erro Erro:",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
+                console.error(erro); // Use console.error para erros
+                console.error("Detalhes do erro:", erro.stack);
+                res.status(500).json({ erro: "Erro ao salvar respostas", detalhes: erro.message });
             }
         );
-    module.exports = {
-        salvar
-    };
 }
+
+module.exports = {
+    salvar
+};
