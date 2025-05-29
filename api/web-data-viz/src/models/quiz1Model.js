@@ -1,4 +1,4 @@
-var database = require("../database/config")
+var conexao = require("../database/config")
 
 function salvar(req, res) {
     var queries = respostas.map(resp => {

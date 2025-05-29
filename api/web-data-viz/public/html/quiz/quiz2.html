@@ -341,5 +341,40 @@
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
+
+        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal;
+
+        document.getElementById('jogo').classList.add("text-new-gray");
+
+        btnProx.disabled = true;
+        btnSubmeter.disabled = true;
+        btnTentarNovamente.disabled = false;
+
+        enviarRespostas(); // ✅ CHAMA A FUNÇÃO AQUI
     }
+            function enviarRespostas() {
+            const respostas = [
+                { idPergunta: 1, idAlternativa: 2 },
+                { idPergunta: 2, idAlternativa: 4 },
+                // adicione todas as respostas aqui conforme o quiz
+            ];
+
+            fetch("/quiz1/salvar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuario: 1, // substitua com o ID real do usuário logado
+                    respostas: respostas
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Resposta do servidor:", data);
+                    alert("Respostas salvas com sucesso!");
+                })
+                .catch(err => {
+                    console.error("Erro ao salvar:", err);
+                    alert("Erro ao salvar respostas.");
+                });
+        }
 </script>

@@ -7,19 +7,25 @@ function salvar(req, res) {
     if (!idUsuario || !respostas || !Array.isArray(respostas)) {
         return res.status(400).json({ erro: "Dados inválidos ou incompletos." });
     }
-    // quiz1Model.salvar(req,res)
-    //     .then(
-    //         function (resultado){
-    //             res.json(resultado);
-    //         }
-    //     ).catch(
-    //         function(erro){
-    //             console.log(erro);
-    //             console.log(
-    //                 "n/Houve um erro Erro:",
-    //                 erro.sqlMessage
-    //             );
-    //             res.status(500).json(erro.sqlMessage);
-    //         }
-    //     );
-    }
+    console.log("Respostas recebidas:", req.body);
+    console.log("Salvando resposta: ", instrucao);
+
+    quiz1Model.salvar(req,res)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "n/Houve um erro Erro:",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    module.exports = {
+        salvar
+    };
+}
