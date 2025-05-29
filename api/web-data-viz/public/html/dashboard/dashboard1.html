@@ -1,11 +1,266 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard|FairyInside</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard com Sidebar</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #325827;
+            /* Cor de fundo da imagem */
+            color: #ffffff;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        .sidebar {
+            background-color: #223b1b;
+            /* Cor da barra lateral */
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            /* Largura aproximada da barra lateral */
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .greeting {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .profile-button {
+            margin-top: 100px;
+        }
+
+        .profile-button,
+        .more-data-button {
+            background-color: #223b1b;
+            color: white;
+            text-align: center;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.532);
+            /* Adiciona uma borda branca de 2 pixels */
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: left;
+            width: 150px;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button {
+            background-color: #ffffff;
+            color: black;
+            text-align: center;
+            text-align: center;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: left;
+            width: 150px;
+            margin-top: 150px;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-button:hover,
+        .more-data-button:hover,
+        .logout-button:hover {
+            background-color: #e0e0e0;
+            color: black;
+        }
+
+        .logout-button:hover {
+            background-color: #d32f2f;
+            color: #ffffff;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            /* Alterado para alinhar itens verticalmente */
+            align-items: center;
+            /* justify-content: center; Removido para o KPI ficar acima */
+        }
+
+        .kpi {
+            display: flex;
+            justify-content: center;
+            background-color: #1b3415;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            width: 20%;
+            height: 100px;
+            text-align: center;
+        }
+
+        .grade {
+            justify-content: center;
+            background-color: #2a521f;
+            padding: 30px;
+            width: 80%;
+            /* Ajuste a largura conforme necessário */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-box {
+            width: 100%;
+            /* O gráfico ocupa toda a largura da div .grade */
+            max-width: 800px;
+            /* Defina uma largura máxima se desejar */
+            margin: 0 auto;
+            /* Centraliza o gráfico dentro da div .grade */
+        }
+    </style>
 </head>
-<body>
-    
-</body>
+
+<body onload="carregarGrafico()">
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-image">
+                <img src="../../assets/img/tinker.jpg" alt="Foto de Perfil">
+            </div>
+            <h2 class="greeting">Olá, <span id="b_usuario">usuário</span>!</h2>
+            <div class="button-container">
+                <button class="profile-button">Seus Dados</button>
+                <button class="more-data-button">Mais dados</button>
+                <button class="logout-button">Sair</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="kpi">
+                <p>Sua pontuação:</p><span id="acertos-usuario"></span>
+            </div>
+            <div class="grade">
+                <div class="chart-box">
+                    <canvas id="grafico" width="10"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    const fkUsuario = sessionStorage.ID_USUARIO;
+    let chart;
+    const ctx = document.getElementById("grafico").getContext("2d");
+
+    function carregarGrafico() {
+        fetch(`/dash/pontuacao/${fkUsuario}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.length === 0) {
+                    alert(`O usuário do ID ${fkUsuario} não possui registros nesse quiz.`);
+                    if (chart) chart.destroy();
+                    return;
+                }
+
+                const labels = data.map((_, index) => `Tentativa ${index + 1}`);
+                const pontuacoes = data.map(pontuacoes => pontuacoes.resultado);
+                const erros = pontuacoes.map(ponto => 10 - ponto);
+
+                console.log(pontuacoes, erros);
+
+                if (chart) chart.destroy();
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Acertos',
+                                data: pontuacoes,
+                                backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                                borderColor: '#00d704',
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Erros',
+                                data: erros,
+                                backgroundColor: 'rgba(255, 0, 0, 0.4)',
+                                borderColor: 'red',
+                                borderWidth: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.2)'
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.2)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: 'white'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+    }
+
+</script>
