@@ -1,5 +1,5 @@
+drop database FairyInside;
 create database FairyInside;
-
 use FairyInside;
 
 create table usuario(
@@ -19,16 +19,12 @@ fkusuario int,
 foreign key(fkusuario)references usuario (idusuario));
 
 create table quiz(
-idquiz int not null auto_increment primary key
-);
-
-CREATE TABLE resposta_usuario (
-    fkusuario INT NOT NULL,
-    fkquiz INT NOT NULL,
-    resposta_escolhida VARCHAR(255),
-    PRIMARY KEY (fkusuario, fkquiz),
-    FOREIGN KEY (fkusuario) REFERENCES usuario(idusuario),
-    FOREIGN KEY (fkquiz) REFERENCES quiz(idquiz)
+idquiz int not null auto_increment,
+fkusuario int not null,
+resultado int not null,
+data_quiz date not null,
+primary key(idquiz, fkusuario),
+foreign key(fkusuario) references usuario(idusuario)
 );
 
 select*from usuario;

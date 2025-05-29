@@ -127,15 +127,7 @@
             alternativaCorreta: "alternativaA"
         },
         {
-            pergunta: "6. Qual é o nome da fada jardineira?",
-            alternativaA: "Silvermist",
-            alternativaB: "Vidia",
-            alternativaC: "Rosetta",
-            alternativaD: "Fawn",
-            alternativaCorreta: "alternativaC"
-        },
-        {
-            pergunta: "7. Qual dessas fadas tem talento com os animais?",
+            pergunta: "6. Qual dessas fadas tem talento com os animais?",
             alternativaA: "Silvermist",
             alternativaB: "Vidia",
             alternativaC: "Rosetta",
@@ -143,7 +135,7 @@
             alternativaCorreta: "alternativaD"
         },
         {
-            pergunta: "8. Qual é o nome do filme em que Tinker Bell ajuda uma fada pirata?",
+            pergunta: "7. Qual é o nome do filme em que Tinker Bell ajuda uma fada pirata?",
             alternativaA: "Tinker Bell e o Tesouro Perdido",
             alternativaB: "Tinker Bell: Fadas e Piratas",
             alternativaC: "Tinker Bell e o Resgate da Fada",
@@ -151,7 +143,7 @@
             alternativaCorreta: "alternativaB"
         },
         {
-            pergunta: "9. Quem é a fada da água, calma e gentil, amiga da Tinker Bell?",
+            pergunta: "8. Quem é a fada da água, calma e gentil, amiga da Tinker Bell?",
             alternativaA: "Silvermist",
             alternativaB: "Vidia",
             alternativaC: "Rosetta",
@@ -159,7 +151,7 @@
             alternativaCorreta: "alternativaA"
         },
         {
-            pergunta: "10. Qual é o nome do local onde vivem as fadas?",
+            pergunta: "9. Qual é o nome do local onde vivem as fadas?",
             alternativaA: "Terra do Nunca",
             alternativaB: "Ilha Encantada",
             alternativaC: "Vale das Fadas",
@@ -167,7 +159,7 @@
             alternativaCorreta: "alternativaC"
         },
         {
-            pergunta: "11. Qual é o nome do filme em que Tinker Bell conhece uma menina humana?",
+            pergunta: "10. Qual é o nome do filme em que Tinker Bell conhece uma menina humana?",
             alternativaA: "Tinker Bell e o Tesouro Perdido",
             alternativaB: "Tinker Bell: Fadas e Piratas",
             alternativaC: "Tinker Bell e o Resgate da Fada",
@@ -350,55 +342,33 @@
         btnSubmeter.disabled = true;
         btnTentarNovamente.disabled = false;
 
-        enviarRespostas(); // ✅ CHAMA A FUNÇÃO AQUI
-    }
-function enviarRespostas() {
-    const respostas = [];
-    const options = document.getElementsByName("option");
+        var pontuacao = pontuacaoFinal;
 
-    for (let i = 0; i < listaDeQuestoes.length; i++) {
-        let algumaOpcaoSelecionada = false; // Flag para verificar se alguma opção foi selecionada para a pergunta atual
-        for (let j = 0; j < options.length; j++) {
-            if (options[j].checked && options[j].name === `option${i}`) { // ✅ Verifique se a opção está marcada E se pertence à pergunta atual
-                const idPergunta = i + 1;
-                let idAlternativa;
+        var fkUsuario = sessionStorage.ID_USUARIO;
 
-                switch (options[j].value) {
-                    case "alternativaA": idAlternativa = 1; break;
-                    case "alternativaB": idAlternativa = 2; break;
-                    case "alternativaC": idAlternativa = 3; break;
-                    case "alternativaD": idAlternativa = 4; break;
-                }
-
-                respostas.push({ idPergunta: idPergunta, idAlternativa: idAlternativa });
-                algumaOpcaoSelecionada = true;
-                break; // Sai do loop interno (opções) após encontrar uma seleção
-            }
-        }
-        if (!algumaOpcaoSelecionada) {
-            console.warn(`Nenhuma opção selecionada para a pergunta ${i + 1}`);
-            // Se você quiser tratar isso como um erro, pode adicionar lógica aqui
-        }
-    }
-
-    console.log("Dados a serem enviados:", JSON.stringify({ idUsuario: 1, respostas: respostas })); // ✅ Log para depuração
-
-    fetch("/quiz1/salvarquiz", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            idUsuario: 1,
-            respostas: respostas
+        fetch("/quiz1/inserirPontuacao", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                pontuacaoServer: pontuacao,
+                fkUsuarioServer: fkUsuario,
+            }),
         })
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("Resposta do servidor:", data);
-        alert("Respostas salvas com sucesso!");
-    })
-    .catch(err => {
-        console.error("Erro ao salvar:", err);
-        alert("Erro ao salvar respostas.");
-    });
-}
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(texto => {
+                        console.error("Erro na resposta do backend:", texto);
+                    });
+                } else {
+                    console.log("Requisição bem-sucedida");
+                }
+            })
+            .catch(erro => {
+                console.error("Erro na requisição:", erro);
+            });
+    }
+
+
 </script>
