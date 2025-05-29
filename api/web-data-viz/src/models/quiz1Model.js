@@ -1,7 +1,6 @@
 var conexao = require("../database/config");
 
-function salvar(req, res) {
-    var { idUsuario, respostas } = req.body; // Obtenha idUsuario e respostas do corpo da requisição
+function salvarquiz(idUsuario, respostas) {
 
     var queries = respostas.map(resposta => { // Iterar sobre cada resposta
         var { idPergunta, idAlternativa } = resposta; // Obter dados da resposta individual
@@ -20,11 +19,11 @@ function salvar(req, res) {
         });
     });
 
-    Promise.all(queries)
-        .then(() => res.status(200).json({ mensagem: "Respostas salvas com sucesso!" }))
-        .catch(erro => res.status(500).json({ erro: "Erro ao salvar respostas", detalhes: erro }));
+    return Promise.all(queries) // ✅ RETORNE A PROMISE AQUI!
+        .then(() => res.status(200).json({ mensagem: "OK" }))
+        .catch(erro => res.status(500).json({ erro: "Erro ao salvar", detalhes: erro }));
 }
 
 module.exports = {
-    salvar
+    salvarquiz
 };

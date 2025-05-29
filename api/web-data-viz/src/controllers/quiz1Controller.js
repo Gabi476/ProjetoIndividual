@@ -1,6 +1,6 @@
 var quiz1Model = require("../models/quiz1Model");
 
-function salvar(req, res) {
+function salvarquiz(req, res) {
     const idUsuario = req.body.idUsuario;
     const respostas = req.body.respostas;
 
@@ -8,13 +8,13 @@ function salvar(req, res) {
         return res.status(400).json({ erro: "Dados inválidos ou incompletos." });
     }
     console.log("Respostas recebidas:", req.body);
-    console.log("Salvando resposta: ", instrucao);
+    // console.log("Salvando resposta: ", instrucao);
 
-    quiz1Model.salvar(req, res)
+    quiz1Model.salvarquiz(req, res)
         .then(
             function (resultado) {
                 res.json(resultado);
-            }
+            }   
         ).catch(
             function (erro) {
                 console.error(erro); // Use console.error para erros
@@ -25,5 +25,5 @@ function salvar(req, res) {
 }
 
 module.exports = {
-    salvar
+    salvarquiz
 };

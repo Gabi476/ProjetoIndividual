@@ -62,7 +62,7 @@
                 <button onclick="submeter()" id="btnSubmeter">Enviar resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Próxima pergunta</button>
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Quer fazer</button>
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Fazer novamente</button>
             </div>
 
         </div>
@@ -352,29 +352,53 @@
 
         enviarRespostas(); // ✅ CHAMA A FUNÇÃO AQUI
     }
-            function enviarRespostas() {
-            const respostas = [
-                { idPergunta: 1, idAlternativa: 2 },
-                { idPergunta: 2, idAlternativa: 4 },
-                // adicione todas as respostas aqui conforme o quiz
-            ];
+function enviarRespostas() {
+    const respostas = [];
+    const options = document.getElementsByName("option");
 
-            fetch("/quiz1/salvar", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    idUsuario: 1, // substitua com o ID real do usuário logado
-                    respostas: respostas
-                })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log("Resposta do servidor:", data);
-                    alert("Respostas salvas com sucesso!");
-                })
-                .catch(err => {
-                    console.error("Erro ao salvar:", err);
-                    alert("Erro ao salvar respostas.");
-                });
+    for (let i = 0; i < listaDeQuestoes.length; i++) {
+        let algumaOpcaoSelecionada = false; // Flag para verificar se alguma opção foi selecionada para a pergunta atual
+        for (let j = 0; j < options.length; j++) {
+            if (options[j].checked && options[j].name === `option${i}`) { // ✅ Verifique se a opção está marcada E se pertence à pergunta atual
+                const idPergunta = i + 1;
+                let idAlternativa;
+
+                switch (options[j].value) {
+                    case "alternativaA": idAlternativa = 1; break;
+                    case "alternativaB": idAlternativa = 2; break;
+                    case "alternativaC": idAlternativa = 3; break;
+                    case "alternativaD": idAlternativa = 4; break;
+                }
+
+                respostas.push({ idPergunta: idPergunta, idAlternativa: idAlternativa });
+                algumaOpcaoSelecionada = true;
+                break; // Sai do loop interno (opções) após encontrar uma seleção
+            }
         }
+        if (!algumaOpcaoSelecionada) {
+            console.warn(`Nenhuma opção selecionada para a pergunta ${i + 1}`);
+            // Se você quiser tratar isso como um erro, pode adicionar lógica aqui
+        }
+    }
+
+    console.log("Dados a serem enviados:", JSON.stringify({ idUsuario: 1, respostas: respostas })); // ✅ Log para depuração
+
+    fetch("/quiz1/salvarquiz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            idUsuario: 1,
+            respostas: respostas
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Resposta do servidor:", data);
+        alert("Respostas salvas com sucesso!");
+    })
+    .catch(err => {
+        console.error("Erro ao salvar:", err);
+        alert("Erro ao salvar respostas.");
+    });
+}
 </script>
