@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Adicione no <head> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
     <style>
         body {
@@ -181,7 +183,7 @@
             </div>
             <div class="grade">
                 <div class="chart-box">
-                    <canvas id="grafico"></canvas>
+                    <canvas id="graficoPizza"></canvas>
                 </div>
             </div>
         </div>
@@ -202,69 +204,42 @@
             }
         }
         function carregarGrafico() {
-            fetch(`/dash2/${fkUsuario}`)
+            fetch('/dash3/personalidades')
                 .then(res => res.json())
                 .then(data => {
-                    console.log("Dados recebidos:", data);
-                    // --- Cálculo da média ---
-                    const acertos_usuario = document.getElementById("acertos-usuario");
-                    if (data.length === 0) {
-                        acertos_usuario.innerHTML = "0";
-                        if (chart) chart.destroy();
-                        alert(`Não há registros de outros usuários.`);
-                        return;
-                    }
-                    // Calcula a média dos resultados
-                    const soma = data.reduce((acc, item) => acc + Number(item.resultado), 0);
-                    const media = soma / data.length;
-                    acertos_usuario.innerHTML = media.toFixed(2);
+                    const labels = data.map(item => item.personalidade);
+                    const valores = data.map(item => item.quantidade);
+                    const total = valores.reduce((a, b) => a + b, 0);
 
-                    // --- Gráfico (mantém igual) ---
-                    const usuarios = [...new Set(data.map(item => item.nome_usuario))];
-                    const tentativasPorUsuario = {};
-                    usuarios.forEach(usuario => {
-                        tentativasPorUsuario[usuario] = data
-                            .filter(item => item.nome_usuario === usuario)
-                            .map(item => item.resultado);
-                    });
-
-                    const maxTentativas = Math.max(...Object.values(tentativasPorUsuario).map(arr => arr.length));
-                    const labels = Array.from({ length: maxTentativas }, (_, i) => `Tentativa ${i + 1}`);
-
-                    const datasets = usuarios.map((usuario, idx) => ({
-                        label: usuario,
-                        data: tentativasPorUsuario[usuario],
-                        backgroundColor: `hsl(${idx * 60}, 70%, 50%)`,
-                        borderColor: `hsl(${idx * 60}, 70%, 40%)`,
-                        borderWidth: 2
-                    }));
-
-                    if (chart) chart.destroy();
-                    chart = new Chart(ctx, {
-                        type: 'bar',
+                    new Chart(document.getElementById('graficoPizza'), {
+                        type: 'pie',
                         data: {
                             labels: labels,
-                            datasets: datasets
+                            datasets: [{
+                                data: valores,
+                                backgroundColor: [
+                                    '#f39c12', '#8e44ad', '#3498db', '#e74c3c', '#2ecc71', '#1abc9c'
+                                ]
+                            }]
                         },
                         options: {
                             responsive: true,
-                            scales: {
-                                x: {
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255,255,255,0.2)' }
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255,255,255,0.2)' }
-                                }
-                            },
                             plugins: {
-                                legend: { labels: { color: 'white' } }
+                                legend: { position: 'bottom' },
+                                datalabels: {
+                                    color: '#fff',
+                                    font: { weight: 'bold', size: 16 },
+                                    formatter: (value, context) => {
+                                        const percent = ((value / total) * 100).toFixed(1);
+                                        return percent + '%';
+                                    }
+                                }
                             }
-                        }
+                        },
+                        plugins: [ChartDataLabels]
                     });
                 });
+            document.getElementById("btnLogout").onclick = logout;
         }
         function logout() {
             sessionStorage.clear();
