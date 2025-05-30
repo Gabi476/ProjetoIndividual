@@ -1,14 +1,14 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Georgia, serif;
-    background-color: #325827;
-    color: #fff;
-    line-height: 1.5;
+  font-family: Georgia, serif;
+  background-color: #325827;
+  color: #fff;
+  line-height: 1.5;
 }
 
 .header {
@@ -60,63 +60,95 @@ li {
   font-weight: bold;
   text-decoration: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}   
+}
 
 .quiz {
-    padding-top: 120px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding-top: 120px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .quadro {
-    display: flex;
-    width: 900px;
-    height: 420px;
-    background-color: #2b441e;
-    border-radius: 20px;
-    padding: 40px;
-    gap: 40px;
-    color: white;
+  display: flex;
+  width: 900px;
+  height: 420px;
+  background-color: #2b441e;
+  border-radius: 20px;
+  padding: 40px;
+  gap: 40px;
+  color: white;
 }
 
 .quadrologleft {
-    flex: 1;
+  flex: 1;
 }
 
 .quadrologleft h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .quadrologleft p {
-    margin-bottom: 10px;
-    font-size: 16px;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 .quadrologleft ul {
-    padding-left: 20px;
+  padding-left: 20px;
 }
 
 .linha-divisoria {
-    width: 2px;
-    background-color: white;
-    opacity: 0.5;
+  width: 2px;
+  background-color: white;
+  opacity: 0.5;
 }
 
 .quadro-direita {
-    flex: 1;
-    /* Por enquanto vazio, pode ser usado futuramente */
+  flex: 1;
+}
+
+.quadro-direita h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.quadro-direita p {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.quadro-direita ul {
+  padding-left: 20px;
 }
 
 .ir {
-    padding: 0.5rem 1rem;
-    background-color: white;
-    border-radius: 15px;
-    color: black;
-    text-decoration: none;
-    font-weight: 500;
-    margin-top: 100px;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: -10px;
+  display: inline-block;
+}
+
+.ir2 {
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  border-radius: 15px;
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 35px;
+  display: inline-block;
 }
