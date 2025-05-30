@@ -160,9 +160,8 @@
             </div>
             <h2 class="greeting">Olá, <span id="b_usuario">usuário</span>!</h2>
             <div class="button-container">
-                <p>Venha ver como foi a pontuação dos outros usuários</p>
-                <button class="more-data-button" onclick="mudar()">Mais dados</button>
-                <button class="logout-button" id="btnLogout">Sair</button>
+                <button class="more-data-button">Meus dados</button>
+                <button class="logout-button">Sair</button>
             </div>
         </div>
         <div class="content">
@@ -269,15 +268,6 @@ function atualizarKPI() {
                 acertos_usuario.innerHTML = ultimaPontuacao;
             }
         });
-}
-function logout() {
-    sessionStorage.clear();
-    window.location.href = "../../index.html";
-}
-
-document.getElementById("btnLogout").onclick = logout;
-function mudar() {
-    window.location.href = "dashboard2.html";
 }
 
 </script>
