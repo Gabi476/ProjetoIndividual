@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard com Sidebar</title>
+    <title>Dashboard| Meus dados</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -99,6 +99,11 @@
             transition: background-color 0.3s ease;
         }
 
+        .more-data-button a {
+            color: white;
+            text-decoration: none;
+        }
+
         .profile-button:hover,
         .more-data-button:hover,
         .logout-button:hover {
@@ -161,7 +166,7 @@
             <h2 class="greeting">Olá, <span id="b_usuario">usuário</span>!</h2>
             <div class="button-container">
                 <p>Venha ver como foi a pontuação dos outros usuários</p>
-                <button class="more-data-button" onclick="mudar()">Mais dados</button>
+                <button class="more-data-button" onclick="mudar()"><a href="dasboard2.html">Mais dados</a></button>
                 <button class="logout-button" id="btnLogout">Sair</button>
             </div>
         </div>
@@ -178,106 +183,103 @@
         </div>
     </div>
 
-</html>
+    <script>
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+        const fkUsuario = sessionStorage.ID_USUARIO;
+        let chart;
+        const ctx = document.getElementById("grafico").getContext("2d");
 
-<script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    const fkUsuario = sessionStorage.ID_USUARIO;
-    let chart;
-    const ctx = document.getElementById("grafico").getContext("2d");
+        function carregarGrafico() {
+            fetch(`/dash/pontuacao/${fkUsuario}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        alert(`O usuário do ID ${fkUsuario} não possui registros nesse quiz.`);
+                        if (chart) chart.destroy();
+                        return;
+                    }
 
-    function carregarGrafico() {
-        fetch(`/dash/pontuacao/${fkUsuario}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.length === 0) {
-                    alert(`O usuário do ID ${fkUsuario} não possui registros nesse quiz.`);
+                    const labels = data.map((_, index) => `Tentativa ${index + 1}`);
+                    const pontuacoes = data.map(pontuacoes => pontuacoes.resultado);
+                    const erros = pontuacoes.map(ponto => 10 - ponto);
+
+                    console.log(pontuacoes, erros);
+
                     if (chart) chart.destroy();
-                    return;
-                }
-
-                const labels = data.map((_, index) => `Tentativa ${index + 1}`);
-                const pontuacoes = data.map(pontuacoes => pontuacoes.resultado);
-                const erros = pontuacoes.map(ponto => 10 - ponto);
-
-                console.log(pontuacoes, erros);
-
-                if (chart) chart.destroy();
-                chart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [
-                            {
-                                label: 'Acertos',
-                                data: pontuacoes,
-                                backgroundColor: 'rgba(0, 255, 0, 0.2)',
-                                borderColor: '#00d704',
-                                borderWidth: 2
-                            },
-                            {
-                                label: 'Erros',
-                                data: erros,
-                                backgroundColor: 'rgba(255, 0, 0, 0.4)',
-                                borderColor: 'red',
-                                borderWidth: 2
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            x: {
-                                ticks: {
-                                    color: 'white'
+                    chart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Acertos',
+                                    data: pontuacoes,
+                                    backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                                    borderColor: '#00d704',
+                                    borderWidth: 2
                                 },
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.2)'
+                                {
+                                    label: 'Erros',
+                                    data: erros,
+                                    backgroundColor: 'rgba(255, 0, 0, 0.4)',
+                                    borderColor: 'red',
+                                    borderWidth: 2
                                 }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    color: 'white'
-                                },
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.2)'
-                                }
-                            }
+                            ]
                         },
-                        plugins: {
-                            legend: {
-                                labels: {
-                                    color: 'white'
+                        options: {
+                            responsive: true,
+                            scales: {
+                                x: {
+                                    ticks: {
+                                        color: 'white'
+                                    },
+                                    grid: {
+                                        color: 'rgba(255, 255, 255, 0.2)'
+                                    }
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        color: 'white'
+                                    },
+                                    grid: {
+                                        color: 'rgba(255, 255, 255, 0.2)'
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        color: 'white'
+                                    }
                                 }
                             }
                         }
+                    });
+                });
+        }
+        function atualizarKPI() {
+            const acertos_usuario = document.getElementById("acertos-usuario"); // Adicione esta linha
+            fetch(`/dash/pontuacao/${fkUsuario}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Dados recebidos para KPI:", data);
+                    if (data.length === 0) {
+                        acertos_usuario.innerHTML = "0";
+                    } else {
+                        const ultimaPontuacao = data[data.length - 1].resultado;
+                        acertos_usuario.innerHTML = ultimaPontuacao;
                     }
                 });
-            });
-    }
-function atualizarKPI() {
-    const acertos_usuario = document.getElementById("acertos-usuario"); // Adicione esta linha
-    fetch(`/dash/pontuacao/${fkUsuario}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log("Dados recebidos para KPI:", data);
-            if (data.length === 0) {
-                acertos_usuario.innerHTML = "0";
-            } else {
-                const ultimaPontuacao = data[data.length - 1].resultado;
-                acertos_usuario.innerHTML = ultimaPontuacao;
-            }
-        });
-}
-function logout() {
-    sessionStorage.clear();
-    window.location.href = "../../index.html";
-}
+        }
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = "../../index.html";
+        }
 
-document.getElementById("btnLogout").onclick = logout;
-function mudar() {
-    window.location.href = "dashboard2.html";
-}
+        document.getElementById("btnLogout").onclick = logout;
 
-</script>
+    </script>
+
+</html>
