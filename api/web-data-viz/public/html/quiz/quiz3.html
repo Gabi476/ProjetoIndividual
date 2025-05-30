@@ -12,7 +12,7 @@
 <body>
     <header class="header">
         <div class="nav">
-            <a class="logo" href="index.html">FairyInside</a>
+            <a class="logo" href="../../index.html">FairyInside</a>
             <nav class="navegar">
                 <ul class="l">
                     <li><a href="../filmes.html">Filmes</a></li>
@@ -254,13 +254,15 @@
         } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
             alert("Atenção... a próxima é a ultima questão!");
             numeroDaQuestaoAtual++; // <-- Adicione esta linha
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
+             finalizarJogo();
         } else {
             finalizarJogo();
         }
         limparCoresBackgroundOpcoes();
     }
-
+    function limparCoresBackgroundOpcoes() {
+        // Se não quiser fazer nada, pode deixar vazio ou implementar a lógica de limpar cores dos botões
+    }
     function tentarNovamente() {
         // atualiza a página
         window.location.reload()
@@ -273,46 +275,46 @@
         }
     }
 
-   function finalizarJogo() {
-    let personalidade = Object.keys(contagemPersonagens).reduce((a, b) => contagemPersonagens[a] > contagemPersonagens[b] ? a : b);
+    function finalizarJogo() {
+        let personalidade = Object.keys(contagemPersonagens).reduce((a, b) => contagemPersonagens[a] > contagemPersonagens[b] ? a : b);
 
-    let textoParaMensagemFinal = `Sua personalidade é: <b>${personalidade}</b>!`;
+        let textoParaMensagemFinal = `Sua personalidade é: <b>${personalidade}</b>!`;
 
-    document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal;
-    document.getElementById('msgFinal').classList.add("text-success-with-bg");
-    document.getElementById('spanPontuacaoFinal').innerHTML = personalidade;
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal;
+        document.getElementById('msgFinal').classList.add("text-success-with-bg");
+        document.getElementById('spanPontuacaoFinal').innerHTML = personalidade;
 
-    document.getElementById('jogo').classList.add("text-new-gray");
+        document.getElementById('jogo').classList.add("text-new-gray");
 
-    btnProx.disabled = true;
-    btnSubmeter.disabled = true;
-    btnTentarNovamente.disabled = false;
+        btnProx.disabled = true;
+        btnSubmeter.disabled = true;
+        btnTentarNovamente.disabled = false;
 
-    var fkUsuario = sessionStorage.ID_USUARIO;
+        var fkUsuario = sessionStorage.ID_USUARIO;
 
-    fetch("/quiz1/inserirPontuacao", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            idQuiz: 2, // quiz de personalidade
-            fkUsuarioServer: fkUsuario,
-            personalidade: personalidade
-        }),
-    })
-    .then(response => {
-        if (!response.ok) {
-            return response.text().then(texto => {
-                console.error("Erro na resposta do backend:", texto);
+        fetch("/quiz3/inserirPontuacao", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idQuiz: 2, // quiz de personalidade
+                fkUsuarioServer: fkUsuario,
+                personalidade: personalidade
+            }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(texto => {
+                        console.error("Erro na resposta do backend:", texto);
+                    });
+                } else {
+                    console.log("Requisição bem-sucedida");
+                }
+            })
+            .catch(erro => {
+                console.error("Erro na requisição:", erro);
             });
-        } else {
-            console.log("Requisição bem-sucedida");
-        }
-    })
-    .catch(erro => {
-        console.error("Erro na requisição:", erro);
-    });
-}
+    }
 
 </script>
