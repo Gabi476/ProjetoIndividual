@@ -166,13 +166,13 @@
             </div>
             <h2 class="greeting">Olá, <span id="b_usuario">usuário</span>!</h2>
             <div class="button-container">
-                <button class="more-data-button" onclick="mudar()"><a href="dasboard2.html">Meus dados</a></button>
+                <button class="more-data-button" onclick="mudar()"><a href="dashboard1.html">Meus dados</a></button>
                 <button class="logout-button" id="btnLogout">Sair</button>
             </div>
         </div>
         <div class="content">
             <div class="kpi">
-                <p>Sua pontuação:</p><br>
+                <p>Média da pontuação dos usuários:</p><br>
                 <span id="acertos-usuario"></span>
             </div>
             <div class="grade">
@@ -194,13 +194,20 @@
                 .then(res => res.json())
                 .then(data => {
                     console.log("Dados recebidos:", data);
+                    // --- Cálculo da média ---
+                    const acertos_usuario = document.getElementById("acertos-usuario");
                     if (data.length === 0) {
-                        alert(`Não há registros de outros usuários.`);
+                        acertos_usuario.innerHTML = "0";
                         if (chart) chart.destroy();
+                        alert(`Não há registros de outros usuários.`);
                         return;
                     }
+                    // Calcula a média dos resultados
+                    const soma = data.reduce((acc, item) => acc + Number(item.resultado), 0);
+                    const media = soma / data.length;
+                    acertos_usuario.innerHTML = media.toFixed(2);
 
-                    // Agrupa os resultados por usuário
+                    // --- Gráfico (mantém igual) ---
                     const usuarios = [...new Set(data.map(item => item.nome_usuario))];
                     const tentativasPorUsuario = {};
                     usuarios.forEach(usuario => {
@@ -209,11 +216,9 @@
                             .map(item => item.resultado);
                     });
 
-                    // Descobre o maior número de tentativas entre todos os usuários
                     const maxTentativas = Math.max(...Object.values(tentativasPorUsuario).map(arr => arr.length));
                     const labels = Array.from({ length: maxTentativas }, (_, i) => `Tentativa ${i + 1}`);
 
-                    // Cria um dataset para cada usuário
                     const datasets = usuarios.map((usuario, idx) => ({
                         label: usuario,
                         data: tentativasPorUsuario[usuario],
@@ -249,20 +254,6 @@
                     });
                 });
         }
-        // function atualizarKPI() {
-        //     const acertos_usuario = document.getElementById("acertos-usuario"); // Adicione esta linha
-        //     fetch(`/dash/pontuacao/${fkUsuario}`)
-        //         .then(res => res.json())
-        //         .then(data => {
-        //             console.log("Dados recebidos para KPI:", data);
-        //             if (data.length === 0) {
-        //                 acertos_usuario.innerHTML = "0";
-        //             } else {
-        //                 const ultimaPontuacao = data[data.length - 1].resultado;
-        //                 acertos_usuario.innerHTML = ultimaPontuacao;
-        //             }
-        //         });
-        // }
         function logout() {
             sessionStorage.clear();
             window.location.href = "../../index.html";
