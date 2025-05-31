@@ -1,26 +1,18 @@
-var quiz1Model = require("../models/qui43Model");
+var dash4Model = require("../models/dash4Model");
 
-function inserir(req, res) {
-    var fkUsuario = req.body.fkUsuarioServer;
-    var personalidade = req.body.personalidade;
+function graficoGenero(req, res) {
+    dash4Model.contarGenero()
+        .then(resultado => res.json(resultado))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
+}
 
-    quiz1Model.inserir(fkUsuario, personalidade)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o envio da pontuacao! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+function graficoIdade(req, res) {
+    dash4Model.contarIdade()
+        .then(resultado => res.json(resultado))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
 }
 
 module.exports = {
-    inserir
+    graficoGenero,
+    graficoIdade
 }

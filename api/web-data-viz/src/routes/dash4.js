@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var dash3Controller = require('../controllers/dash4Controller');
+var dash4Controller = require('../controllers/dash4Controller');
 
-router.get('/personalidades', dash3Controller.listarPersonalidades);
+router.get('/genero', dash4Controller.graficoGenero);
+router.get('/idade', dash4Controller.graficoIdade);
 
 module.exports = router;

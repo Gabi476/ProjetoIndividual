@@ -172,6 +172,7 @@
         </div>
         <div class="content">
             <select id="selectDash" onchange="mudarDash()">
+                <option value="0" selected>Selecione</option>
                 <option value="1">Pontuações</option>
                 <option value="2">Personalidade</option>
                 <option value="3">Parâmetros</option>
@@ -182,7 +183,8 @@
             </div>
             <div class="grade">
                 <div class="chart-box">
-                    <canvas id="grafico"></canvas>
+                    <canvas id="graficoGenero"></canvas>
+                    <canvas id="graficoIdade"></canvas>
                 </div>
             </div>
         </div>
@@ -193,80 +195,47 @@
         const fkUsuario = sessionStorage.ID_USUARIO;
         let chart;
         const ctx = document.getElementById("grafico").getContext("2d");
-
         function mudarDash() {
             const select = document.getElementById("selectDash");
             if (select.value === "1") {
-                window.location.href = "dasboard2.html";
+                window.location.href = "dashboard2.html";
             } else if (select.value === "2") {
                 window.location.href = "dash3.html";
-            }else if (select.value === "3") {
+            } else if (select.value === "3") {
                 window.location.href = "dash4.html";
             }
         }
-
         function carregarGrafico() {
-            fetch(`/dash2/${fkUsuario}`)
+            fetch('/dash4/genero')
                 .then(res => res.json())
                 .then(data => {
-                    // Filtra apenas tentativas válidas (resultado não nulo e maior que zero)
-                    const tentativasValidas = data.filter(item => item.resultado !== null && item.resultado > 0);
-
-                    const acertos_usuario = document.getElementById("acertos-usuario");
-                    if (tentativasValidas.length === 0) {
-                        acertos_usuario.innerHTML = "0";
-                        if (chart) chart.destroy();
-                        alert(`Não há registros de outros usuários.`);
-                        return;
-                    }
-                    // Calcula a média dos resultados
-                    const soma = tentativasValidas.reduce((acc, item) => acc + Number(item.resultado), 0);
-                    const media = soma / tentativasValidas.length;
-                    acertos_usuario.innerHTML = media.toFixed(2);
-
-                    // --- Gráfico ---
-                    const usuarios = [...new Set(tentativasValidas.map(item => item.nome_usuario))];
-                    const tentativasPorUsuario = {};
-                    usuarios.forEach(usuario => {
-                        tentativasPorUsuario[usuario] = tentativasValidas
-                            .filter(item => item.nome_usuario === usuario)
-                            .map(item => item.resultado);
-                    });
-
-                    const maxTentativas = Math.max(...Object.values(tentativasPorUsuario).map(arr => arr.length));
-                    const labels = Array.from({ length: maxTentativas }, (_, i) => `Tentativa ${i + 1}`);
-
-                    const datasets = usuarios.map((usuario, idx) => ({
-                        label: usuario,
-                        data: tentativasPorUsuario[usuario],
-                        backgroundColor: `hsl(${idx * 60}, 70%, 50%)`,
-                        borderColor: `hsl(${idx * 60}, 70%, 40%)`,
-                        borderWidth: 2
-                    }));
-
-                    if (chart) chart.destroy();
-                    chart = new Chart(ctx, {
-                        type: 'bar', // ou 'bar' se preferir barras
+                    const labels = data.map(item => item.genero_label);
+                    const valores = data.map(item => item.quantidade);
+                    new Chart(document.getElementById('graficoGenero'), {
+                        type: 'pie',
                         data: {
                             labels: labels,
-                            datasets: datasets
-                        },
-                        options: {
-                            responsive: true,
-                            scales: {
-                                x: {
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255,255,255,0.2)' }
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255,255,255,0.2)' }
-                                }
-                            },
-                            plugins: {
-                                legend: { labels: { color: 'white' } }
-                            }
+                            datasets: [{
+                                data: valores,
+                                backgroundColor: ['#e74c3c', '#3498db']
+                            }]
+                        }
+                    });
+                });
+            fetch('/dash4/idade')
+                .then(res => res.json())
+                .then(data => {
+                    const labels = data.map(item => item.faixa_etaria);
+                    const valores = data.map(item => item.quantidade);
+                    new Chart(document.getElementById('graficoIdade'), {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Usuários',
+                                data: valores,
+                                backgroundColor: ['#2ecc71', '#f1c40f']
+                            }]
                         }
                     });
                 });

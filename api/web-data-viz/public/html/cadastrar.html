@@ -35,7 +35,7 @@
                         <input type="password" id="ipt_senhalogin" placeholder="******">
                     <div class="sexo">
                         <p>Gênero:</p>
-                       <input type="text" id="ipt_genero">
+                        <input type="text" id="ipt_genero" placeholder="Feminino/Masculino">
                     </div>
                     <button class="botao" onclick="cadastrar()">Cadastrar</button>
                     <div id="div_aguardar" class="loading-div">
@@ -64,8 +64,8 @@
             nomeVar == "" ||
             dataVar == "" ||
             emailVar == "" ||
-            senhaVar == ""||
-            generoVar==""
+            senhaVar == "" ||
+            generoVar == ""
         ) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML =
@@ -79,9 +79,14 @@
         if (nomeVar.length < 1) {
             alert("Insira um nome")
         }
-        // if(emailVar){
+        var generoVar = ipt_genero.value.trim().toLowerCase();
 
-        // }
+        if (generoVar !== "feminino" && generoVar !== "masculino") {
+            cardErro.style.display = "block";
+            alert("O gênero deve ser 'Feminino' ou 'Masculino'.");
+            finalizarAguardar();
+            return false;
+        }
 
         if (senhaVar < 6) {
             alert("Sua senha deve ter mais de 6 digitos!")
@@ -133,4 +138,5 @@
     function sumirMensagem() {
         cardErro.style.display = "none";
     }
+
 </script>

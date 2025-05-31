@@ -172,6 +172,7 @@
         </div>
         <div class="content">
             <select id="selectDash" onchange="mudarDash()">
+                <option value="0" selected>Selecione</option>
                 <option value="1">Pontuações</option>
                 <option value="2">Personalidade</option>
                 <option value="3">Parâmetros</option>
@@ -193,14 +194,13 @@
         const fkUsuario = sessionStorage.ID_USUARIO;
         let chart;
         const ctx = document.getElementById("grafico").getContext("2d");
-
         function mudarDash() {
             const select = document.getElementById("selectDash");
             if (select.value === "1") {
-                window.location.href = "dasboard2.html";
+                window.location.href = "dashboard2.html"; // Corrija o nome do arquivo aqui
             } else if (select.value === "2") {
                 window.location.href = "dash3.html";
-            }else if (select.value === "3") {
+            } else if (select.value === "3") {
                 window.location.href = "dash4.html";
             }
         }
