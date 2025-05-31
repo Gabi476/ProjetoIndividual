@@ -157,11 +157,11 @@
     </style>
 </head>
 
-<body onload="carregarGrafico(); atualizarKPI()">
+<body onload="carregarGrafico(); atualizarKPI(); atualizarImagemPersonalidade()">
     <div class="container">
         <div class="sidebar">
             <div class="profile-image">
-                <img src="../../assets/img/tinker.jpg" alt="Foto de Perfil">
+                <img src="../../assets/img/tinker_usu.jpg" alt="Foto de Perfil">
             </div>
             <h2 class="greeting">Olá, <span id="b_usuario">usuário</span>!</h2>
             <div class="button-container">
@@ -270,6 +270,29 @@
                     } else {
                         const ultimaPontuacao = data[data.length - 1].resultado;
                         acertos_usuario.innerHTML = ultimaPontuacao;
+                    }
+                });
+        }
+        function atualizarImagemPersonalidade() {
+            const fkUsuario = sessionStorage.ID_USUARIO;
+            fetch(`/usuarios/personalidade/${fkUsuario}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Personalidade recebida:", data);
+                    if (data.length > 0 && data[0].personalidade) {
+                        const personalidade = data[0].personalidade;
+                        const img = document.querySelector('.profile-image img');
+                        if (personalidade === "Tinker Bell") {
+                            img.src = "../../assets/img/tinker_usu.jpg";
+                        } else if (personalidade === "Vidia") {
+                            img.src = "../../assets/img/vidiausu.jpg";
+                        } else if (personalidade === "Silvermist") {
+                            img.src = "../../assets/img/silvermistusu.jpg";
+                        } else if (personalidade === "Rosetta") {
+                            img.src = "../../assets/img/rossetausu.jpg";
+                        } else {
+                            img.src = "../../assets/img/tinker_usu.jpg"; // padrão
+                        }
                     }
                 });
         }
