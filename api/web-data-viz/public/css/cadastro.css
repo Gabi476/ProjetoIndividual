@@ -4,56 +4,63 @@
     box-sizing: border-box;
 }
 
+html,
 body {
-    font-family: "Poppins", Arial, sans-serif;
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
     font-family: "Poppins", Arial, sans-serif;
     color: #fff;
     line-height: 1.5;
 }
+
 .bannerl {
-    height: 800px;
+    height: 100vh;
     width: 100%;
     background: url("../assets/img/filme_login1.jpg") center/cover no-repeat;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
-    color: #fff;
-    background-size:cover;
 }
 
 .quadrolo {
     display: flex;
+    align-items: center;
+    background-color: rgba(90, 59, 27, 0.4);
+    border-radius: 18px;
     padding: 20px;
     width: 850px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #5a3b1b;
-    border-radius: 18px;
-    height: 750px;
-    background-color: rgba(90, 59, 27, 0.4);
+    height: auto;
+}
+
+.img-esquerda {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 30px;
+    border: 3px solid #fff;
 }
 
 .quadrologleft {
-    width: 100%;
+    flex: 1;
     padding: 2rem;
     color: black;
 }
 
 .quadrologleft h2 {
-    display: flex;
-    align-items: center;
     text-align: center;
-    justify-content: center;
     margin-bottom: 30px;
     font-size: 40px;
     color: #2c2414;
 }
 
-.quadrologleft p {
-    font-size: 20px;
-}
-
-.quadrologleft input {
+.quadrologleft input[type="text"],
+.quadrologleft input[type="email"],
+.quadrologleft input[type="password"],
+.quadrologleft input[type="date"] {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1rem;
@@ -63,25 +70,20 @@ body {
     color: white;
     background-color: #585555c1;
 }
- /* .sexo{
-    justify-content: start;
-    align-items: center;
-} */
-label{
-    display: flex;
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
 }
-#radio_fem{
-    margin-right: 450px;
-    margin-bottom: 0.5px;
+
+#radio_fem,
+#radio_masc {
+    margin-right: 10px;
+    margin-top: 10px;
 }
-#radio_masc{
-    margin-right: 450px;
-    margin-bottom: 0.5px;
-}
-.quadrologleft span{
-    font-size: 25x;
-    margin-left: 330px;
-}
+
 .entrar {
     display: flex;
     background-color: #585555e2;
@@ -93,6 +95,31 @@ label{
     text-align: center;
     align-items: center;
     justify-content: center;
-    margin-left:300px;
-    margin-top: 40px;
+    margin-top: 30px;
+}
+
+.botao,
+.entrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 48px;
+    margin: 32px auto 0 auto;
+    background: linear-gradient(90deg, #0f5319 0%, #034008 100%);
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px #0002;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    letter-spacing: 1px;
+    outline: none;
+    margin-top: -7px;
+}
+
+#div_aguardar {
+    display: none !important;
 }

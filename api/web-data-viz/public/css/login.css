@@ -1,15 +1,17 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Poppins", Arial, sans-serif;
-    font-family: "Poppins", Arial, sans-serif;
-    background-color: #325827;
-    color: #fff;
-    line-height: 1.5;
+  font-family: "Poppins", Arial, sans-serif;
+  background: url("../assets/img/filme_login1.jpg") center/cover no-repeat;
+  color: #fff;
+  line-height: 1.5;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .header {
@@ -61,111 +63,110 @@ li {
   font-weight: bold;
   text-decoration: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}   
+}
 
 .bannerl {
-    height: 600px;
-    width: 100%;
-    background: url("../assets/img/filme_login1.jpg") center/cover no-repeat;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    color: #fff;
+  height: 100vh;
+  width: 100vw;
+  background: url("../assets/img/filme_login1.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  color: #fff;
 }
 
 .quadrolo {
-    display: flex;
-    padding: 20px;
-    width: 850px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #5a3b1b;
-    border-radius: 18px;
-    height: 400px;
-    background-color: rgba(90, 59, 27, 0.4);
+  display: flex;
+  padding: 20px;
+  width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(90, 59, 27, 0.4);
+  border-radius: 18px;
+  height: 400px;
 }
 
 .quadrologleft {
-    width: 65%;
-    padding: 2rem;
-    color: black;
+  width: 65%;
+  padding: 2rem;
+  color: black;
 }
 
 .quadrologleft h2 {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    margin-bottom: 30px;
-    font-size: 40px;
-    color: #2c2414;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  font-size: 40px;
+  color: #2c2414;
 }
 
 .quadrologleft p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .quadrologleft input {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: #585555c1;
-}
-.quadrologleft .text{
-    display: flex;
-    font-size: 20px;
-    justify-content: center;
-}
-.quadrologleft .text a{
-    color: black;
-    text-decoration: none;
-}
-.entrar {
-    display: flex;
-    background-color: #585555e2;
-    border-radius: 20px;
-    color: white;
-    text-decoration: none;
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    margin-left:140px;
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #585555c1;
 }
 
-/* ... outras regras CSS ... */
+.quadrologleft .text {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+}
+
+.quadrologleft .text a {
+  color: black;
+  text-decoration: none;
+}
+
+.entrar {
+  display: flex;
+  background-color: #585555e2;
+  border-radius: 20px;
+  color: white;
+  text-decoration: none;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-left: 140px;
+}
 
 .quadrolori {
-  width: 45%; /* Aumentar a largura para ocupar o espaço restante */
+  width: 45%;
   padding: 2rem;
-  /* Remover a borda esquerda */
   border-left: none;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centralizar conteúdo verticalmente */
-  align-items: center; /* Centralizar conteúdo horizontalmente */
+  justify-content: center;
+  align-items: center;
 }
 
 /* Estilos para a div de carregamento */
 .loading-div {
-  display: none; /* Inicialmente escondido */
-  position: fixed; /* Para ficar no centro da tela */
+  display: none;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 10px;
-  z-index: 1001; /* Acima de outros elementos */
+  z-index: 1001;
 }
 
 #loading-gif {
-  width: 80px; /* Ajuste o tamanho conforme necessário */
+  width: 80px;
   height: 80px;
 }
 

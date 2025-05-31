@@ -8,8 +8,18 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
+        html,
         body {
+            height: 100%;
             margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* Remove o scroll */
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
             font-family: sans-serif;
             background-color: #325827;
             color: #ffffff;
@@ -18,7 +28,8 @@
 
         .container {
             display: flex;
-            width: 100%;
+            width: 100vw;
+            height: 100vh;
         }
 
         .sidebar {
@@ -28,21 +39,29 @@
             flex-direction: column;
             align-items: center;
             width: 250px;
-            /* Largura aproximada da barra lateral */
+            height: 100vh;
+            box-sizing: border-box;
         }
 
         .profile-image {
             width: 150px;
             height: 150px;
+            aspect-ratio: 1/1;
             border-radius: 50%;
             overflow: hidden;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
         }
 
         .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
+            display: block;
         }
 
         .greeting {
@@ -70,14 +89,11 @@
             background-color: #223b1b;
             color: white;
             text-align: center;
-            text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.532);
-            /* Adiciona uma borda branca de 2 pixels */
             padding: 12px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
-            text-align: left;
             width: 150px;
             box-sizing: border-box;
             transition: background-color 0.3s ease;
@@ -86,14 +102,11 @@
         .logout-button {
             background-color: #ffffff;
             color: black;
-            text-align: center;
-            text-align: center;
             border: none;
             padding: 12px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
-            text-align: left;
             width: 150px;
             margin-top: 150px;
             box-sizing: border-box;
@@ -122,22 +135,35 @@
             padding: 30px;
             display: flex;
             flex-direction: column;
-            /* Alterado para alinhar itens verticalmente */
             align-items: center;
-            /* justify-content: center; Removido para o KPI ficar acima */
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .kpi {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
             background-color: #1b3415;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            width: 20%;
-            height: 80px;
+            width: 250px;
+            height: 100px;
             text-align: center;
+        }
+
+        .kpi p {
+            margin: 0 0 8px 0;
+        }
+
+        #acertos-usuario {
+            display: block;
+            font-size: 2em;
+            margin-top: 0;
         }
 
         .grade {
@@ -145,9 +171,12 @@
             background-color: #2a521f;
             padding: 30px;
             width: 80%;
-            height: auto;
+            height: 60%;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
         }
 
         .chart-box {
@@ -155,14 +184,80 @@
             max-width: 800px;
             margin: 0 auto;
         }
+
+        .select-container {
+            align-self: flex-start;
+            margin-bottom: 30px;
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            min-width: 180px;
+        }
+
+        .select-container select {
+            padding: 10px 12px;
+            border-radius: 5px;
+            border: 1px solid #8bc34a;
+            background: #223b1b;
+            color: #fff;
+            font-size: 1em;
+            outline: none;
+            margin-bottom: 0;
+            transition: border 0.2s;
+            width: 100%;
+            min-width: 100px;
+            max-width: 160px;
+            padding: 6px 10px;
+            font-size: 0.95em;
+        }
+
+        .linha-kpi-select {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 20px;
+            gap: 200px;
+        }
+
+        .select-container {
+            min-width: 120px;
+            max-width: 160px;
+            width: auto;
+            margin-bottom: 0;
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .kpi {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #1b3415;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0;
+            width: 250px;
+            height: 100px;
+            text-align: center;
+            margin: 0 auto;
+            flex: none;
+        }
+
+        .fake-space {
+            flex: 1;
+        }
     </style>
 </head>
 
-<body onload="carregarGrafico()">
+<body onload="carregarGrafico(); atualizarImagemPersonalidade()">
     <div class="container">
         <div class="sidebar">
             <div class="profile-image">
-                <img src="../../assets/img/tinker.jpg" alt="Foto de Perfil">
+                <img src="../../assets/img/logo.png" alt="Foto de Perfil">
             </div>
             <h2 class="greeting">Olá, <span id="b_usuario">usuário</span>!</h2>
             <div class="button-container">
@@ -171,113 +266,137 @@
             </div>
         </div>
         <div class="content">
-            <select id="selectDash" onchange="mudarDash()">
-                <option value="0" selected>Selecione</option>
-                <option value="1">Pontuações</option>
-                <option value="2">Personalidade</option>
-                <option value="3">Parâmetros</option>
-            </select>
-            <div class="kpi">
-                <p>Média da pontuação dos usuários:</p><br>
-                <span id="acertos-usuario"></span>
+            <div class="linha-kpi-select">
+                <div class="select-container">
+                    <select id="selectDash" onchange="mudarDash()">
+                        <option value="0" selected>Selecione</option>
+                        <option value="1">Pontuações</option>
+                        <option value="2">Personalidade</option>
+                        <option value="3">Parâmetros</option>
+                    </select>
+                </div>
+                <div class="kpi">
+                    <p>Média da pontuação dos usuários:</p>
+                    <span id="acertos-usuario"></span>
+                </div>
+                <div class="fake-space"></div>
             </div>
+            <!-- Adicione este bloco para o gráfico -->
             <div class="grade">
                 <div class="chart-box">
                     <canvas id="grafico"></canvas>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-        const fkUsuario = sessionStorage.ID_USUARIO;
-        let chart;
-        const ctx = document.getElementById("grafico").getContext("2d");
-        function mudarDash() {
-            const select = document.getElementById("selectDash");
-            if (select.value === "1") {
-                window.location.href = "dashboard2.html"; // Corrija o nome do arquivo aqui
-            } else if (select.value === "2") {
-                window.location.href = "dash3.html";
-            } else if (select.value === "3") {
-                window.location.href = "dash4.html";
+        <script>
+            b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+            const fkUsuario = sessionStorage.ID_USUARIO;
+            let chart;
+            const ctx = document.getElementById("grafico").getContext("2d");
+            function mudarDash() {
+                const select = document.getElementById("selectDash");
+                if (select.value === "1") {
+                    window.location.href = "dashboard2.html"; // Corrija o nome do arquivo aqui
+                } else if (select.value === "2") {
+                    window.location.href = "dash3.html";
+                } else if (select.value === "3") {
+                    window.location.href = "dash4.html";
+                }
             }
-        }
-
-        function carregarGrafico() {
-            fetch(`/dash2/${fkUsuario}`)
-                .then(res => res.json())
-                .then(data => {
-                    // Filtra apenas tentativas válidas (resultado não nulo e maior que zero)
-                    const tentativasValidas = data.filter(item => item.resultado !== null && item.resultado > 0);
-
-                    const acertos_usuario = document.getElementById("acertos-usuario");
-                    if (tentativasValidas.length === 0) {
-                        acertos_usuario.innerHTML = "0";
-                        if (chart) chart.destroy();
-                        alert(`Não há registros de outros usuários.`);
-                        return;
-                    }
-                    // Calcula a média dos resultados
-                    const soma = tentativasValidas.reduce((acc, item) => acc + Number(item.resultado), 0);
-                    const media = soma / tentativasValidas.length;
-                    acertos_usuario.innerHTML = media.toFixed(2);
-
-                    // --- Gráfico ---
-                    const usuarios = [...new Set(tentativasValidas.map(item => item.nome_usuario))];
-                    const tentativasPorUsuario = {};
-                    usuarios.forEach(usuario => {
-                        tentativasPorUsuario[usuario] = tentativasValidas
-                            .filter(item => item.nome_usuario === usuario)
-                            .map(item => item.resultado);
-                    });
-
-                    const maxTentativas = Math.max(...Object.values(tentativasPorUsuario).map(arr => arr.length));
-                    const labels = Array.from({ length: maxTentativas }, (_, i) => `Tentativa ${i + 1}`);
-
-                    const datasets = usuarios.map((usuario, idx) => ({
-                        label: usuario,
-                        data: tentativasPorUsuario[usuario],
-                        backgroundColor: `hsl(${idx * 60}, 70%, 50%)`,
-                        borderColor: `hsl(${idx * 60}, 70%, 40%)`,
-                        borderWidth: 2
-                    }));
-
-                    if (chart) chart.destroy();
-                    chart = new Chart(ctx, {
-                        type: 'bar', // ou 'bar' se preferir barras
-                        data: {
-                            labels: labels,
-                            datasets: datasets
-                        },
-                        options: {
-                            responsive: true,
-                            scales: {
-                                x: {
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255,255,255,0.2)' }
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255,255,255,0.2)' }
-                                }
-                            },
-                            plugins: {
-                                legend: { labels: { color: 'white' } }
+            function atualizarImagemPersonalidade() {
+                const fkUsuario = sessionStorage.ID_USUARIO;
+                fetch(`/usuarios/personalidade/${fkUsuario}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.length > 0 && data[0].personalidade) {
+                            const personalidade = data[0].personalidade;
+                            const img = document.querySelector('.profile-image img');
+                            if (personalidade === "Tinker Bell") {
+                                img.src = "/assets/img/tinkeusu.jpg";
+                            } else if (personalidade === "Vidia") {
+                                img.src = "/assets/img/vidiausu.jpg";
+                            } else if (personalidade === "Silvermist") {
+                                img.src = "/assets/img/silvermistusu.jpg";
+                            } else if (personalidade === "Rosetta") {
+                                img.src = "/assets/img/rossetausu.jpg";
                             }
                         }
                     });
-                });
-        }
-        function logout() {
-            sessionStorage.clear();
-            window.location.href = "../../index.html";
-        }
+            }
+            function carregarGrafico() {
+                fetch(`/dash2/${fkUsuario}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        // Filtra apenas tentativas válidas (resultado não nulo e maior que zero)
+                        const tentativasValidas = data.filter(item => item.resultado !== null && item.resultado > 0);
 
-        document.getElementById("btnLogout").onclick = logout;
+                        const acertos_usuario = document.getElementById("acertos-usuario");
+                        if (tentativasValidas.length === 0) {
+                            acertos_usuario.innerHTML = "0";
+                            if (chart) chart.destroy();
+                            alert(`Não há registros de outros usuários.`);
+                            return;
+                        }
+                        // Calcula a média dos resultados
+                        const soma = tentativasValidas.reduce((acc, item) => acc + Number(item.resultado), 0);
+                        const media = soma / tentativasValidas.length;
+                        acertos_usuario.innerHTML = media.toFixed(2);
 
-    </script>
+                        // --- Gráfico ---
+                        const usuarios = [...new Set(tentativasValidas.map(item => item.nome_usuario))];
+                        const tentativasPorUsuario = {};
+                        usuarios.forEach(usuario => {
+                            tentativasPorUsuario[usuario] = tentativasValidas
+                                .filter(item => item.nome_usuario === usuario)
+                                .map(item => item.resultado);
+                        });
+
+                        const maxTentativas = Math.max(...Object.values(tentativasPorUsuario).map(arr => arr.length));
+                        const labels = Array.from({ length: maxTentativas }, (_, i) => `Tentativa ${i + 1}`);
+
+                        const datasets = usuarios.map((usuario, idx) => ({
+                            label: usuario,
+                            data: tentativasPorUsuario[usuario],
+                            backgroundColor: `hsl(${idx * 60}, 70%, 50%)`,
+                            borderColor: `hsl(${idx * 60}, 70%, 40%)`,
+                            borderWidth: 2
+                        }));
+
+                        if (chart) chart.destroy();
+                        chart = new Chart(ctx, {
+                            type: 'bar', // ou 'bar' se preferir barras
+                            data: {
+                                labels: labels,
+                                datasets: datasets
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    x: {
+                                        ticks: { color: 'white' },
+                                        grid: { color: 'rgba(255,255,255,0.2)' }
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                        ticks: { color: 'white' },
+                                        grid: { color: 'rgba(255,255,255,0.2)' }
+                                    }
+                                },
+                                plugins: {
+                                    legend: { labels: { color: 'white' } }
+                                }
+                            }
+                        });
+                    });
+            }
+            function logout() {
+                sessionStorage.clear();
+                window.location.href = "../../index.html";
+            }
+
+            document.getElementById("btnLogout").onclick = logout;
+
+        </script>
 
 </html>
