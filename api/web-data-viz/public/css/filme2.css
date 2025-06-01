@@ -11,6 +11,11 @@ body {
     line-height: 1.5;
 }
 
+.navbar a img {
+    width: 100px;
+    height: auto;
+}
+
 .navbar {
     width: 100vw;
     height: 70px;
@@ -53,7 +58,7 @@ body {
     list-style: none;
     display: flex;
     gap: 2rem;
-    margin-left: 50px;
+    margin-left: 150px;
     /* Move todos os links para mais longe da logo */
 }
 

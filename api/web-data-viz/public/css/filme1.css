@@ -33,6 +33,11 @@ body {
     margin-right: 18px;
 }
 
+.navbar a img {
+    width: 100px;
+    height: auto;
+}
+
 .navbar-title {
     color: #fff;
     font-size: 1.5rem;
@@ -53,7 +58,7 @@ body {
     list-style: none;
     display: flex;
     gap: 2rem;
-    margin-left: 50px;
+    margin-left: 150px;
     /* Move todos os links para mais longe da logo */
 }
 
