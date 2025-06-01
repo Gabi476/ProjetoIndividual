@@ -373,12 +373,27 @@ body {
     height: 180px;
     align-items: center;
     justify-content: center;
+    gap: 16px; /* Reduz o espaço entre todos os elementos */
 }
 
-.proximo .seta {}
-
+.proximo .seta img,
 .proximo img {
     height: 70px;
+    width: 70px;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.proximo-texto {
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Deixa as setas e o texto mais próximos */
+    margin-left: 0;
 }
 
 .footer {
