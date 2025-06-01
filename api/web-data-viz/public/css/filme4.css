@@ -357,24 +357,6 @@ body {
     line-height: 1.6;
 }
 
-.avaliar {
-    display: flex;
-    justify-content: center;
-}
-
-.avaliar h2 {
-    font-size: 30px;
-    margin-bottom: 40px
-}
-
-.proximo {
-    display: flex;
-    background: #325827;
-    height: 180px;
-    align-items: center;
-    justify-content: center;
-}
-
 .proximo {
     display: flex;
     background: #325827;
@@ -465,6 +447,27 @@ body {
     align-items: end;
 }
 
+.avaliacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto 0 auto;
+    padding: 32px 24px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 18px;
+    box-shadow: 0 4px 16px #0002;
+    max-width: 350px;
+    margin-bottom: 10px;
+}
+
+.avaliacao p {
+    margin-bottom: 18px;
+    font-size: 1.2rem;
+    color: #325827;
+    font-weight: bold;
+}
+
 .avaliar {
     display: flex;
     justify-content: center;
@@ -475,11 +478,22 @@ body {
 }
 
 .rating {
-    direction: rtl;
-    font-size: 2rem;
-    unicode-bidi: bidi-override;
-    display: inline-block;
+    margin-bottom: 16px;
 }
+
+.submit-rating {
+    margin-top: 18px;
+    padding: 10px 32px;
+    background: linear-gradient(90deg, #b8e986 0%, #88c066 100%);
+    color: #2e4a1b;
+    font-weight: bold;
+    border: none;
+    border-radius: 22px;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px #0001;
+    cursor: pointer;
+}
+
 
 .star {
     display: inline-block;

@@ -154,26 +154,65 @@
 
         </div>
         <p>Nota: <span id="rating-value">3.5</span></p>
+        <button class="submit-rating">Enviar Avaliação</button>
     </div>
-     <div class="proximo">
-            <div class="seta">
-                <a href="./filme3.html">
-                    <img src="../../assets/img/setaesquerda.jpg" alt="Seta para a esquerda">
-                </a>
-            </div>
-            <div class="proximo-texto">
-                Próximo filme
-            </div>
-            <div class="seta">
-                <a href="./filme5.html">
-                    <img src="../../assets/img/setaes.jpg" alt="Seta para a direita">
-                </a>
-
-            </div>
+    <div class="proximo">
+        <div class="seta">
+            <a href="./filme3.html">
+                <img src="../../assets/img/setaesquerda.jpg" alt="Seta para a esquerda">
+            </a>
         </div>
+        <div class="proximo-texto">
+            Próximo filme
+        </div>
+        <div class="seta">
+            <a href="./filme5.html">
+                <img src="../../assets/img/setaes.jpg" alt="Seta para a direita">
+            </a>
+
+        </div>
+    </div>
     <footer class="footer">
         <p>©FairyInside- Gabriele<br>2025</p>
     </footer>
 </body>
 
 </html>
+<script>
+    const stars = document.querySelectorAll('.rating .star');
+    const display = document.getElementById('rating-value');
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const value = star.dataset.value;
+            display.textContent = value;
+
+            stars.forEach(s => {
+                s.classList.remove('selected');
+                if (parseFloat(s.dataset.value) <= parseFloat(value)) {
+                    s.classList.add('selected');
+                }
+            });
+        });
+    });
+    document.querySelector('.submit-rating').addEventListener('click', () => {
+        const nota = parseFloat(document.getElementById('rating-value').textContent);
+        const fkusuario = sessionStorage.ID_USUARIO; // ou outro método para pegar o usuário logado
+        const fkfilme = 1; // id do filme atual (ajuste conforme o filme)
+
+        fetch('/avaliacao', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fkusuario, fkfilme, nota })
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert('Avaliação enviada com sucesso!');
+            })
+            .catch(err => {
+                alert('Erro ao enviar avaliação!');
+                console.error(err);
+            });
+    });
+
+</script>
