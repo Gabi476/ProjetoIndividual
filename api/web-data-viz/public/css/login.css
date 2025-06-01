@@ -54,7 +54,7 @@ li {
   cursor: pointer;
 }
 
-.login {
+.loginb {
   padding: 0.6rem 1.2rem;
   background: linear-gradient(to right, #b8e986, #88c066);
   border: none;
@@ -90,6 +90,7 @@ li {
   width: 65%;
   padding: 2rem;
   color: black;
+  border-right: #d5dad3c3 solid 1px;
 }
 
 .quadrologleft h2 {
@@ -104,7 +105,7 @@ li {
 
 .quadrologleft p {
   font-size: 20px;
-    content: #2c2414;
+  content: #2c2414;
 }
 
 .quadrologleft input {
@@ -145,15 +146,23 @@ li {
 }
 
 .quadrolori {
-  width: 45%;
+  width: 55%;
   padding: 2rem;
-  border-left: 1px solid #ccccccc0;
+  border-left: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #2c2414;
   font-size: 40px;
+}
+
+.quadrolori {
+  width: 55%;
+  padding: 2rem;
+  border-left: none;
+  /* ou simplesmente remova esta linha */
+  /* ...restante do código... */
 }
 
 /* Estilos para a div de carregamento */
