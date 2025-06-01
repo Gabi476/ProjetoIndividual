@@ -179,29 +179,86 @@ button:disabled {
     flex-direction: column;
     align-items: center;
   }
-  
+
 }
+
 #resultadoFinal {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
 .resultado-final-box {
-    background: #fff;
-    color: #22401b;
-    padding: 40px 60px;
-    border-radius: 18px;
-    text-align: center;
-    box-shadow: 0 8px 32px #0003;
-    min-width: 320px;
+  background: #fff;
+  color: #22401b;
+  padding: 40px 60px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 8px 32px #0003;
+  min-width: 320px;
 }
+
 .pontuacao-final {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-top: 18px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 18px;
+}
+
+/* Adicione ao seu arquivo quiz2.css ou dentro de <style> no <head> */
+
+/* Caixa de acertos e erros */
+/* Centraliza a div de acertos/erros acima do quiz e centraliza o quiz na tela */
+
+/* Caixa de acertos e erros centralizada acima do quiz */
+
+#pontuacaoDuranteJogo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 32px;
+  margin: 0 auto 24px auto;
+  /* espaço abaixo para separar do quiz */
+  background: #f7f7f7;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px #0001;
+  padding: 14px 36px;
+  width: fit-content;
+  font-size: 1.2rem;
+  font-weight: 500;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Texto de acertos */
+#pontuacaoDuranteJogo .width-fit-content:first-child {
+  color: #2e7d32;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Texto de erros */
+#pontuacaoDuranteJogo .width-fit-content:last-child {
+  color: #c62828;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Centraliza o bloco principal */
+#pontuacaoEJogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  padding: 40px 20px;
+  width: 100%;
 }

@@ -64,10 +64,6 @@
             </div>
 
         </div>
-        <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-            <span class="width-fit-content">Acertos: <span id="spanCertas"></span></span>
-            <span class="width-fit-content">Erros: <span id="spanErradas"></span></span>
-        </div>
 
         <!-- Pontuação final, escondida até o fim do quiz -->
         <div id="pontuacaoFinalJogo" class="flex-colunar padding-8" style="display: none;">
@@ -290,8 +286,6 @@
 
         // Esconde o quiz e mostra o resultado centralizado
         document.getElementById('jogo').style.display = 'none';
-        document.getElementById('pontuacaoDuranteJogo').style.display = 'none';
-        document.getElementById('pontuacaoFinalJogo').style.display = 'none';
         document.getElementById('resultadoFinal').style.display = 'flex';
 
         document.getElementById('mensagemFinal').innerHTML = textoParaMensagemFinal;

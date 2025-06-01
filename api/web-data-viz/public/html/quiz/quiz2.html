@@ -84,7 +84,7 @@
         <h2>Quiz Finalizado!</h2>
         <p id="mensagemFinal"></p>
         <p class="pontuacao-final">Pontuação final: <span id="pontuacaoFinalSpan"></span></p>
-        <button onclick="voltarParaQuiz()">Dashboards</button>
+        <button onclick="voltarParaQuiz()">Voltar</button>
     </div>
 </div>
 
@@ -189,7 +189,7 @@
     preencherHTMLcomQuestaoAtual(0)
 
     function voltarParaQuiz() {
-        window.location.href = "../dashboard/dashboard1.html"; // ajuste o caminho se necessário
+        window.location.href = "./quiz.html"; // ajuste o caminho se necessário
     }
     function preencherHTMLcomQuestaoAtual(index) {
         habilitarAlternativas(true)
