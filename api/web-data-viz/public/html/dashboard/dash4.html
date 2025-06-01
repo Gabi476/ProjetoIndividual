@@ -350,6 +350,15 @@
                                         data: valores,
                                         backgroundColor: ['#e74c3c', '#3498db']
                                     }]
+                                },
+                                options: {
+                                    plugins: {
+                                        legend: {
+                                            labels: {
+                                                color: '#fff' // Altere para a cor desejada, por exemplo: '#fff' para branco
+                                            }
+                                        }
+                                    }
                                 }
                             });
                         });
@@ -371,6 +380,33 @@
                                         data: valores,
                                         backgroundColor: ['#2ecc71', '#f1c40f']
                                     }]
+                                },
+                                options: {
+                                    plugins: {
+                                        legend: {
+                                            labels: {
+                                                color: '#fff' // Cor da legenda
+                                            }
+                                        }
+                                    },
+                                    scales: {
+                                        x: {
+                                            ticks: {
+                                                color: '#fff' // Cor dos textos do eixo X
+                                            },
+                                            grid: {
+                                                color: '#888' // Cor das linhas do eixo X
+                                            }
+                                        },
+                                        y: {
+                                            ticks: {
+                                                color: '#fff' // Cor dos textos do eixo Y
+                                            },
+                                            grid: {
+                                                color: '#888' // Cor das linhas do eixo Y
+                                            }
+                                        }
+                                    }
                                 }
                             });
                         });

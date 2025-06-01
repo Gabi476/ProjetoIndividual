@@ -271,7 +271,7 @@
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
         const fkUsuario = sessionStorage.ID_USUARIO;
         let chart;
-        const ctx = document.getElementById("grafico").getContext("2d");
+        const ctx = document.getElementById("graficoPizza").getContext("2d");
 
         function mudarDash() {
             const select = document.getElementById("selectDash");
@@ -318,14 +318,19 @@
                             datasets: [{
                                 data: valores,
                                 backgroundColor: [
-                                    '#f39c12', '#8e44ad', '#3498db', '#e74c3c', '#2ecc71', '#1abc9c'
+                                    '#70b63c', '#c2585a', '#3498db', '#e74c3c', '#ad58c21', '#1abc9c'
                                 ]
                             }]
                         },
                         options: {
                             responsive: true,
                             plugins: {
-                                legend: { position: 'bottom' },
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        color: '#fff' // Altere para a cor desejada, exemplo: '#fff' para branco
+                                    }
+                                },
                                 datalabels: {
                                     color: '#fff',
                                     font: { weight: 'bold', size: 16 },
