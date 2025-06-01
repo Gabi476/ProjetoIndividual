@@ -149,10 +149,11 @@ body {
     justify-content: center;
 }
 
-/* .tinkef3{
+.tinkef3 {
     display: flex;
     margin-top: 8px;
-} */
+}
+
 .tinkef3 p {
     display: flex;
     font-size: 20px;
@@ -387,7 +388,8 @@ body {
     height: 180px;
     align-items: center;
     justify-content: center;
-    gap: 16px; /* Reduz o espaço entre todos os elementos */
+    gap: 16px;
+    /* Reduz o espaço entre todos os elementos */
     width: 100%;
 }
 
@@ -407,7 +409,8 @@ body {
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 8px; /* Deixa as setas e o texto mais próximos */
+    gap: 8px;
+    /* Deixa as setas e o texto mais próximos */
     margin-left: 0;
 }
 
