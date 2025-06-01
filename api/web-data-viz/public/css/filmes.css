@@ -12,56 +12,74 @@ body {
     line-height: 1.5;
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(34, 49, 34, 0.7);
-  backdrop-filter: blur(6px);
-  z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+.navbar {
+    width: 100vw;
+    height: 70px;
+    background: rgba(34, 49, 34, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Alinha logo/título à esquerda e botão à direita */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    padding: 0 40px;
 }
 
-.nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.navbar-logo {
+    height: 72px;
+    width: 180px;
+    margin-right: 18px;
 }
 
-.navegar .l {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
+.navbar-title {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-right: 32px;
 }
+
+.navegar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 250px; /* Aumenta a distância entre logo e links */
+}
+
+.l {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin-left: 50px; /* Move todos os links para mais longe da logo */
+}
+
 
 .l a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  transition: color 0.3s ease;
+    margin-left: 0; /* remove o espaçamento exagerado à esquerda de cada link */
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .l a:hover {
-  color: #b8e986;
-}
-
-li {
-  cursor: pointer;
+    color: #b8e986;
 }
 
 .login {
-  padding: 0.6rem 1.2rem;
-  background: linear-gradient(to right, #b8e986, #88c066);
-  border: none;
-  border-radius: 20px;
-  color: #2e4a1b;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}   
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(to right, #b8e986, #88c066);
+    border: none;
+    border-radius: 20px;
+    color: #2e4a1b;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 24px;
+}
 
 .banner {
     height: 600px;
