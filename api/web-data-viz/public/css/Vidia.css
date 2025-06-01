@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    background: linear-gradient(to bottom, #29004b, #3d2168);
+    color: #ffffff;
+    padding-top: 70px;
+}
+
+.navbar {
+    width: 100vw;
+    height: 70px;
+    background: rgba(34, 49, 34, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Alinha logo/título à esquerda e botão à direita */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    padding: 0 40px;
+}
+
+.navbar-logo {
+    height: 72px;
+    width: 180px;
+    margin-right: 18px;
+}
+
+.navbar-title {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-right: 32px;
+}
+
+.navegar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 250px;
+    /* Aumenta a distância entre logo e links */
+}
+
+.l {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin-left: 50px;
+    /* Move todos os links para mais longe da logo */
+}
+
+
+.l a {
+    margin-left: 0;
+    /* remove o espaçamento exagerado à esquerda de cada link */
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.l a:hover {
+    color: #b8e986;
+}
+
+.login {
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(to right, #b8e986, #88c066);
+    border: none;
+    border-radius: 20px;
+    color: #2e4a1b;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 24px;
+}
+
+.conteudo {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.intro {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+}
+
+.intro .texto {
+    flex: 1;
+}
+
+.intro h1 {
+    font-size: 3rem;
+    color: #f0e6ff;
+    margin-bottom: 10px;
+}
+
+.intro p {
+    font-size: 1.2rem;
+}
+
+.intro .imagem {
+    flex: 1;
+    text-align: center;
+}
+
+.intro .imagem img {
+    width: 250px;
+    max-width: 100%;
+}
+
+.caracteristicas {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.caracteristicas h2 {
+    font-size: 2.2rem;
+    color: #d9c8ff;
+    margin-bottom: 20px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid #d6a9ff;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 300px;
+    flex: 1;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: #f1dcff;
+    margin-bottom: 10px;
+}
+
+.curiosidades {
+    margin-top: 60px;
+}
+
+.curiosidades h2 {
+    color: #f4e6ff;
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+.curiosidades ul {
+    list-style-type: square;
+    padding-left: 20px;
+    line-height: 1.8;
+    color: #fefbff;
+}
