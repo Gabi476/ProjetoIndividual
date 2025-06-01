@@ -5,8 +5,7 @@
 }
 
 body {
-    font-family: "Poppins", Arial, sans-serif;
-    font-family: "Poppins", Arial, sans-serif; 
+    font-family: Georgia, serif;
     background-color: #325827;
     color: #fff;
     line-height: 1.5;
@@ -46,19 +45,22 @@ body {
     flex: 1;
     display: flex;
     align-items: center;
-    margin-left: 250px; /* Aumenta a distância entre logo e links */
+    margin-left: 250px;
+    /* Aumenta a distância entre logo e links */
 }
 
 .l {
     list-style: none;
     display: flex;
     gap: 2rem;
-    margin-left: 50px; /* Move todos os links para mais longe da logo */
+    margin-left: 50px;
+    /* Move todos os links para mais longe da logo */
 }
 
 
 .l a {
-    margin-left: 0; /* remove o espaçamento exagerado à esquerda de cada link */
+    margin-left: 0;
+    /* remove o espaçamento exagerado à esquerda de cada link */
     text-decoration: none;
     color: #fff;
     font-weight: 500;
@@ -171,16 +173,17 @@ body {
     height: auto;
     border-radius: 10px;
 }
-.footer{
+
+.footer {
     background-color: #2b4b22;
     display: flex;
     text-align: center;
     justify-content: center;
-    height: 90px;  
+    height: 90px;
     align-items: end;
 }
 
-.banner p{
+.banner p {
     font-size: 40px;
     margin-bottom: 10px;
     margin-left: 150px;

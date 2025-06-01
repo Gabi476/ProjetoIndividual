@@ -10,20 +10,18 @@
 
 
 <body>
-    <header class="header">
-        <div class="nav">
-            <a class="logo" href="index.html">FairyInside</a>
-            <nav class="navegar">
-                <ul class="l">
-                    <li><a href="../filmes.html">Filmes</a></li>
-                    <li><a href="#">Personagens</a></li>
-                    <li><a href="#">Página</a></li>
-                    <li><a href="#">Página</a></li>
-                </ul>
-            </nav>
-            <a class="login" href="../login.html"><b>Login</b></a>
-        </div>
-    </header>
+    <div class="navbar">
+        <a href="../../index.html">
+            <img class="navbar-logo" src="../../assets/img/logo_edt.png" alt="Logo FairyInside">
+        </a>
+        <nav class="navegar">
+            <ul class="l">
+                <li><a href="../filmes.html">Filmes</a></li>
+                <li><a href="../dashboard/dashboard1.html">Dashboards</a></li>
+            </ul>
+        </nav>
+        <a class="login" href="html/../../login.html"><b>Login</b></a>
+    </div>
     <div id="pontuacaoEJogo">
         <div id="jogo" class="width-fit-content flex-colunar border-secondary">
 
@@ -66,20 +64,29 @@
             </div>
 
         </div>
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
-            </div>
+        <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+            <span class="width-fit-content">Acertos: <span id="spanCertas"></span></span>
+            <span class="width-fit-content">Erros: <span id="spanErradas"></span></span>
+        </div>
+
+        <!-- Pontuação final, escondida até o fim do quiz -->
+        <div id="pontuacaoFinalJogo" class="flex-colunar padding-8" style="display: none;">
+            <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                <span id="spanPontuacaoFinal">***</span>
+            </span>
+            <span id="msgFinal" class="width-fit-content">***</span>
         </div>
     </div>
 </body>
+<!-- Div centralizada para o resultado final -->
+<div id="resultadoFinal" style="display:none;">
+    <div class="resultado-final-box">
+        <h2>Quiz Finalizado!</h2>
+        <p id="mensagemFinal"></p>
+        <p class="pontuacao-final">Pontuação final: <span id="pontuacaoFinalSpan"></span></p>
+        <button onclick="voltarParaQuiz()">Dashboards</button>
+    </div>
+</div>
 
 </html>
 <script>
@@ -181,6 +188,9 @@
 
     preencherHTMLcomQuestaoAtual(0)
 
+    function voltarParaQuiz() {
+        window.location.href = "../dashboard/dashboard1.html"; // ajuste o caminho se necessário
+    }
     function preencherHTMLcomQuestaoAtual(index) {
         habilitarAlternativas(true)
         const questaoAtual = listaDeQuestoes[index]
@@ -207,7 +217,7 @@
         }
 
         if (!hasChecked) {
-            alert("Não há alternativas escolhidas. Escolha uma opção.")
+            alert("Não há alterntivas escolhidas. Escolha uma opção.")
         } else {
             btnSubmeter.disabled = true
             btnProx.disabled = false
@@ -302,31 +312,33 @@
     }
 
     function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+        document.getElementById('pontuacaoDuranteJogo').style.display = 'none';
+        document.getElementById('pontuacaoFinalJogo').style.display = 'none';
+        document.getElementById('jogo').style.display = 'none';
+        document.getElementById('resultadoFinal').style.display = 'flex';
+
+        let textoParaMensagemFinal = null;
+        let classComCoresParaMensagemFinal = null;
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes;
 
         if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
+            textoParaMensagemFinal = "Eita! Acho que você deve maratonar os filmes da Tinker Bell!";
+            classComCoresParaMensagemFinal = "text-danger-with-bg";
         }
         else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
+            textoParaMensagemFinal = "Dá para mehorar, hein?";
+            classComCoresParaMensagemFinal = "text-warning-with-bg";
         }
         else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
+            textoParaMensagemFinal = "Nss, parabéns! Você mandou muito bem!";
+            classComCoresParaMensagemFinal = "text-success-with-bg";
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões.";
 
 
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
-        document.getElementById('jogo').classList.add("text-new-gray")
+        document.getElementById('mensagemFinal').innerHTML = textoParaMensagemFinal;
+        document.getElementById('pontuacaoFinalSpan').innerText = pontuacaoFinal;
 
         btnProx.disabled = true
         btnSubmeter.disabled = true

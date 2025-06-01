@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: "Poppins", Arial, sans-serif;
+    font-family: Georgia, serif;
     background-color: white;
     color: black;
     line-height: 1.5;
@@ -373,7 +373,8 @@ body {
     height: 180px;
     align-items: center;
     justify-content: center;
-    gap: 16px; /* Reduz o espaço entre todos os elementos */
+    gap: 16px;
+    /* Reduz o espaço entre todos os elementos */
 }
 
 .proximo .seta img,
@@ -392,7 +393,8 @@ body {
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 8px; /* Deixa as setas e o texto mais próximos */
+    gap: 8px;
+    /* Deixa as setas e o texto mais próximos */
     margin-left: 0;
 }
 

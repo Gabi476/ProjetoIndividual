@@ -12,32 +12,56 @@ body {
   padding-top: 80px;
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(34, 49, 34, 0.7);
-  backdrop-filter: blur(6px);
-  z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.nav {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 30px;
+.navbar {
+  width: 100vw;
+  height: 70px;
+  background: rgba(34, 49, 34, 0.85);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Alinha logo/título à esquerda e botão à direita */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  padding: 0 40px;
 }
 
-.navegar .l {
+.navbar-logo {
+  height: 72px;
+  width: 180px;
+  margin-right: 18px;
+}
+
+.navbar-title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-right: 32px;
+}
+
+.navegar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-left: 250px;
+  /* Aumenta a distância entre logo e links */
+}
+
+.l {
   list-style: none;
   display: flex;
   gap: 2rem;
+  margin-left: 50px;
+  /* Move todos os links para mais longe da logo */
 }
 
+
 .l a {
+  margin-left: 0;
+  /* remove o espaçamento exagerado à esquerda de cada link */
   text-decoration: none;
   color: #fff;
   font-weight: 500;
@@ -46,10 +70,6 @@ body {
 
 .l a:hover {
   color: #b8e986;
-}
-
-li {
-  cursor: pointer;
 }
 
 .login {
@@ -61,6 +81,7 @@ li {
   font-weight: bold;
   text-decoration: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 24px;
 }
 
 /* CONTAINER PRINCIPAL */
@@ -85,7 +106,7 @@ li {
 /* CARTÃO DE PERGUNTA */
 #jogo {
   background: #7a944a;
-  color: white; 
+  color: white;
 }
 
 /* CARTÃO DE PONTUAÇÃO */
@@ -121,7 +142,7 @@ input[type="radio"] {
 button {
   margin-top: 14px;
   padding: 12px 20px;
-  background:  #4e7332;
+  background: #4e7332;
   color: white;
   border: none;
   border-radius: 8px;
@@ -158,4 +179,29 @@ button:disabled {
     flex-direction: column;
     align-items: center;
   }
+  
+}
+#resultadoFinal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.resultado-final-box {
+    background: #fff;
+    color: #22401b;
+    padding: 40px 60px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 8px 32px #0003;
+    min-width: 320px;
+}
+.pontuacao-final {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 18px;
 }
