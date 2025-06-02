@@ -23,7 +23,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Alinha logo/título à esquerda e botão à direita */
     position: fixed;
     top: 0;
     left: 0;
@@ -51,7 +50,6 @@ body {
     display: flex;
     align-items: center;
     margin-left: 250px;
-    /* Aumenta a distância entre logo e links */
 }
 
 .l {
@@ -59,13 +57,11 @@ body {
     display: flex;
     gap: 2rem;
     margin-left: 150px;
-    /* Move todos os links para mais longe da logo */
 }
 
 
 .l a {
     margin-left: 0;
-    /* remove o espaçamento exagerado à esquerda de cada link */
     text-decoration: none;
     color: #fff;
     font-weight: 500;
@@ -508,11 +504,11 @@ body {
     margin-right: 100px;
 }
 
-.rating {
+.notas {
     margin-bottom: 16px;
 }
 
-.submit-rating {
+.enviar {
     margin-top: 18px;
     padding: 10px 32px;
     background: linear-gradient(90deg, #b8e986 0%, #88c066 100%);

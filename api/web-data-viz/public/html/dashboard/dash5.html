@@ -130,6 +130,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            /* Alinha select à esquerda e botão à direita */
             width: 100%;
             max-width: 600px;
             margin-bottom: 40px;
@@ -183,7 +184,7 @@
             justify-content: center;
             align-items: flex-start;
             gap: 60px;
-            width: 100px;
+            width: 100%;
         }
 
         .chart-col {
@@ -192,7 +193,6 @@
             align-items: center;
             min-width: 350px;
             max-width: 400px;
-            margin-top: -30px;
         }
 
         .chart-title {
@@ -228,7 +228,7 @@
 
         .chart-box.idade {
             width: 500px;
-            height: 500px;
+            height: 400px;
         }
 
         .grade {
@@ -243,6 +243,18 @@
             align-self: auto;
             min-width: 140px;
         }
+
+        #graficoMedias {
+            width: 900px !important;
+            height: 400px !important;
+            background: #fff1;
+            border-radius: 10px;
+        }
+
+        .chart-col {
+            min-width: 600px;
+            max-width: 700px;
+        }
     </style>
 </head>
 
@@ -250,15 +262,13 @@
 
     <div class="container">
         <div class="sidebar">
-            <div class="sidebar">
-                <div class="profile-image">
-                    <img src="../../assets/img/logo.png" alt="Foto de Perfil">
-                </div>
-                <h2 class="greeting">Olá, <span id="b_usuario">usuário</span>!</h2>
-                <div class="button-container">
-                    <button class="more-data-button" onclick="mudar()"><a href="dashboard1.html">Meus dados</a></button>
-                    <button class="logout-button" id="btnLogout">Sair</button>
-                </div>
+            <div class="profile-image">
+                <img src="../../assets/img/logo.png" alt="Foto de Perfil">
+            </div>
+            <h2 class="greeting">Olá, <span id="b_usuario">usuário</span>!</h2>
+            <div class="button-container">
+                <button class="more-data-button" onclick="mudar()"><a href="dashboard1.html">Meus dados</a></button>
+                <button class="logout-button" id="btnLogout">Sair</button>
             </div>
         </div>
         <div class="content">
@@ -273,15 +283,14 @@
                     </select>
                 </div>
             </div>
-            <div style="width: 100%; display: flex; justify-content: center; margin-bottom: 40px;">
-                <button id="btnProximo" class="more-data-button">Próximo</button>
+            <div
+                style="width: 200px; border-radius: 10px; display: flex; justify-content: center; margin-bottom: 40px;background-color: #223b1b;">
+                <p>Média de avaliações</p>
             </div>
             <div class="grade">
                 <div class="charts-row" id="chartsRow">
                     <div class="chart-col">
-                        <div class="chart-title" id="chartTitle">Quantidade de mulheres e homens que acessam o site
-                        </div>
-                        <canvas id="grafico"></canvas>
+                        <canvas id="graficoMedias"></canvas>
                     </div>
                 </div>
             </div>
@@ -290,8 +299,6 @@
         <script>
             b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             const fkUsuario = sessionStorage.ID_USUARIO;
-
-            const ctx = document.getElementById("grafico").getContext("2d");
             function mudarDash() {
                 const select = document.getElementById("selectDash");
                 if (select.value === "1") {
@@ -328,91 +335,46 @@
             let chart;
 
             function carregarGrafico() {
-                if (chart) chart.destroy();
-
-                const chartTitle = document.getElementById('chartTitle');
-                const grafico = document.getElementById('grafico');
-                const btnProximo = document.getElementById('btnProximo');
-                const chartBox = grafico.parentElement;
-
-                if (etapa === 1) {
-                    chartBox.classList.remove('idade');
-                    chartTitle.innerText = "Quantidade de mulheres e homens que acessam o site";
-                    btnProximo.innerText = "Próximo";
-                    fetch('/dash4/genero')
-                        .then(res => res.json())
-                        .then(data => {
-                            const labels = data.map(item => item.genero_label);
-                            const valores = data.map(item => item.quantidade);
-                            chart = new Chart(grafico, {
-                                type: 'pie',
-                                data: {
-                                    labels: labels,
-                                    datasets: [{
-                                        data: valores,
-                                        backgroundColor: ['#e74c3c', '#3498db']
-                                    }]
-                                },
-                                options: {
-                                    plugins: {
-                                        legend: {
-                                            labels: {
-                                                color: '#fff'
-                                            }
+                fetch('/dash5/medias')
+                    .then(res => res.json())
+                    .then(data => {
+                        const labels = data.map(item => item.nomefilme);
+                        const medias = data.map(item => Number(item.media));
+                        if (window.chart) window.chart.destroy();
+                        const ctx = document.getElementById('graficoMedias').getContext('2d');
+                        window.chart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels,
+                                datasets: [{
+                                    label: 'Média de Avaliações',
+                                    data: medias,
+                                    borderColor: '#c2585a',
+                                    backgroundColor: '#c2585a88',
+                                    fill: true
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    legend: {
+                                        labels: {
+                                            color: '#fff' // cor da legenda
                                         }
                                     }
-                                }
-                            });
-                        });
-                } else {
-                    chartBox.classList.add('idade');
-                    chartTitle.innerText = "Quantidade de menores e maiores de 18 anos que acessam o site";
-                    btnProximo.innerText = "Voltar";
-                    fetch('/dash4/idade')
-                        .then(res => res.json())
-                        .then(data => {
-                            const labels = data.map(item => item.faixa_etaria);
-                            const valores = data.map(item => item.quantidade);
-                            chart = new Chart(grafico, {
-                                type: 'bar',
-                                data: {
-                                    labels: labels,
-                                    datasets: [{
-                                        label: 'Usuários',
-                                        data: valores,
-                                        backgroundColor: ['#2ecc71', '#f1c40f']
-                                    }]
                                 },
-                                options: {
-                                    plugins: {
-                                        legend: {
-                                            labels: {
-                                                color: '#fff' // Cor da legenda
-                                            }
-                                        }
+                                scales: {
+                                    x: {
+                                        ticks: { color: '#fff' }, // cor dos textos do eixo X
+                                        grid: { color: '#fff2' }
                                     },
-                                    scales: {
-                                        x: {
-                                            ticks: {
-                                                color: '#fff' // Cor dos textos do eixo X
-                                            },
-                                            grid: {
-                                                color: '#888' // Cor das linhas do eixo X
-                                            }
-                                        },
-                                        y: {
-                                            ticks: {
-                                                color: '#fff' // Cor dos textos do eixo Y
-                                            },
-                                            grid: {
-                                                color: '#888' // Cor das linhas do eixo Y
-                                            }
-                                        }
+                                    y: {
+                                        ticks: { color: '#fff' }, // cor dos textos do eixo Y
+                                        grid: { color: '#fff2' }
                                     }
                                 }
-                            });
+                            }
                         });
-                }
+                    });
             }
             document.getElementById("btnProximo").onclick = function () {
                 etapa = etapa === 1 ? 2 : 1;
@@ -422,7 +384,6 @@
                 sessionStorage.clear();
                 window.location.href = "../../index.html";
             }
-
             document.getElementById("btnLogout").onclick = logout;
 
         </script>

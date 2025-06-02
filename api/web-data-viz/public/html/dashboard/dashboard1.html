@@ -14,7 +14,6 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            /* Remove o scroll */
         }
 
         body {
@@ -204,12 +203,25 @@
             max-width: 100%;
             max-height: 100%;
         }
+
+        .voltar {
+            background-color: #223b1b;
+            color: white;
+            border: 1px solid rgb(255, 255, 255);
+            height: 30px;
+            width: 60px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
 <body onload="carregarGrafico(); atualizarKPI(); atualizarImagemPersonalidade()">
     <div class="container">
         <div class="sidebar">
+            <button class="voltar" onclick="voltar()">Voltar</button>
             <div class="profile-image">
                 <img src="../../assets/img/logo.png" alt="Foto de Perfil">
             </div>
@@ -237,6 +249,9 @@
         const fkUsuario = sessionStorage.ID_USUARIO;
         let chart;
         const ctx = document.getElementById("grafico").getContext("2d");
+        function voltar() {
+            window.location.href = "../quiz/quiz.html";
+        }
 
         function carregarGrafico() {
             fetch(`/dash/pontuacao/${fkUsuario}`)
@@ -309,7 +324,7 @@
                 });
         }
         function atualizarKPI() {
-            const acertos_usuario = document.getElementById("acertos-usuario"); // Adicione esta linha
+            const acertos_usuario = document.getElementById("acertos-usuario");
             fetch(`/dash/pontuacao/${fkUsuario}`)
                 .then(res => res.json())
                 .then(data => {
@@ -340,7 +355,7 @@
                         } else if (personalidade === "Rosetta") {
                             img.src = "../../assets/img/rossetausu.jpg";
                         } else {
-                            img.src = "../../assets/img/tinker_usu.jpg"; // padrão
+                            img.src = "../../assets/img/tinker_usu.jpg";
                         }
                     }
                 });

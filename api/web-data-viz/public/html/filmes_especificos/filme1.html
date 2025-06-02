@@ -139,7 +139,7 @@
     </div>
     <div class="avaliacao">
         <p>Avalie o filme</p>
-        <div class="rating">
+        <div class="notas">
             <span data-value="5" class="star full"></span>
             <span data-value="4" class="star full"></span>
             <span data-value="3" class="star full selected"></span>
@@ -147,8 +147,8 @@
             <span data-value="1" class="star full selected"></span>
 
         </div>
-        <p>Nota: <span id="rating-value">3.5</span></p>
-        <button class="submit-rating">Enviar Avaliação</button>
+        <p>Nota: <span id="nota">3.5</span></p>
+        <button class="enviar">Enviar Avaliação</button>
     </div>
 
     <div class="proximo">
@@ -181,8 +181,8 @@
     });
     document.querySelector('.submit-rating').addEventListener('click', () => {
         const nota = parseFloat(document.getElementById('rating-value').textContent);
-        const fkusuario = sessionStorage.ID_USUARIO; // ou outro método para pegar o usuário logado
-        const fkfilme = 1; // id do filme atual (ajuste conforme o filme)
+        const fkusuario = sessionStorage.ID_USUARIO; 
+        const fkfilme = 1;
 
         fetch('/avaliacao', {
             method: 'POST',

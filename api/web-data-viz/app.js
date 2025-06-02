@@ -25,6 +25,7 @@ var quiz3Router = require("./src/routes/quiz3");
 var dash3Router = require("./src/routes/dash3");
 var dash4Router = require("./src/routes/dash4");
 var avaliacaoRouter= require("./src/routes/avaliacao");
+var dash5Router = require("./src/routes/dash5");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,6 +43,7 @@ app.use("/quiz3", quiz3Router);
 app.use("/dash3", dash3Router);
 app.use("/dash4", dash4Router);
 app.use("/avaliacao", avaliacaoRouter);
+app.use("/dash5", dash5Router);
 
 
 app.listen(PORTA_APP, function () {

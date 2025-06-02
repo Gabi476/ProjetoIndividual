@@ -11,7 +11,6 @@ body {
     line-height: 1.5;
 }
 
-/* NAVBAR */
 .header {
     position: fixed;
     top: 0;
@@ -29,7 +28,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Alinha logo/título à esquerda e botão à direita */
     position: fixed;
     top: 0;
     left: 0;
@@ -37,7 +35,8 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     padding: 0 40px;
 }
-.navbar a img{
+
+.navbar a img {
     width: 100px;
     height: auto;
 }
@@ -61,7 +60,6 @@ body {
     display: flex;
     align-items: center;
     margin-left: 250px;
-    /* Aumenta a distância entre logo e links */
 }
 
 .l {
@@ -69,13 +67,11 @@ body {
     display: flex;
     gap: 2rem;
     margin-left: 150px;
-    /* Move todos os links para mais longe da logo */
 }
 
 
 .l a {
     margin-left: 0;
-    /* remove o espaçamento exagerado à esquerda de cada link */
     text-decoration: none;
     color: #fff;
     font-weight: 500;
@@ -98,7 +94,6 @@ body {
     margin-left: 24px;
 }
 
-/* BANNER */
 .banner {
     height: 600px;
     width: 100%;
@@ -125,7 +120,6 @@ body {
     margin-left: 150px;
 }
 
-/* SOBRE */
 .sobretink {
     display: flex;
     align-items: center;
@@ -161,7 +155,6 @@ body {
     height: auto;
 }
 
-/* CARACTERÍSTICAS */
 .caracteristicas {
     background-color: white;
     text-align: center;
@@ -202,7 +195,6 @@ body {
     line-height: 1.6;
 }
 
-/* ENSINO E IMPORTÂNCIA */
 .ensino,
 .importancia {
     display: flex;
@@ -269,7 +261,6 @@ body {
     border-radius: 8px;
 }
 
-/* BANNER MÚSICA */
 .bannermusica {
     height: 600px;
     width: 100%;
@@ -280,7 +271,6 @@ body {
     color: #fff;
 }
 
-/* FOOTER */
 .footer {
     background-color: #2b4b22;
     display: flex;

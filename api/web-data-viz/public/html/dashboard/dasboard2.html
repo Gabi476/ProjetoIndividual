@@ -274,6 +274,7 @@
                         <option value="1">Pontuações</option>
                         <option value="2">Personalidade</option>
                         <option value="3">Parâmetros</option>
+                        <option value="4">Avaliações</option>
                     </select>
                 </div>
                 <div class="kpi">
@@ -291,8 +292,12 @@
         </div>
 
         <script>
-            b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             const fkUsuario = sessionStorage.ID_USUARIO;
+            if (!fkUsuario) {
+                alert("Usuário não autenticado! Faça login novamente.");
+                window.location.href = "../../login.html"; // ajuste o caminho se necessário
+            }
+            b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             let chart;
             const ctx = document.getElementById("grafico").getContext("2d");
             function mudarDash() {
@@ -303,6 +308,8 @@
                     window.location.href = "dash3.html";
                 } else if (select.value === "3") {
                     window.location.href = "dash4.html";
+                } else if (select.value === "4") {
+                    window.location.href = "dash5.html";
                 }
             }
             function atualizarImagemPersonalidade() {
