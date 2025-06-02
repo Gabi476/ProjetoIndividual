@@ -504,11 +504,11 @@ body {
     margin-right: 100px;
 }
 
-.notas {
+.rating {
     margin-bottom: 16px;
 }
 
-.enviar {
+.submit-rating {
     margin-top: 18px;
     padding: 10px 32px;
     background: linear-gradient(90deg, #b8e986 0%, #88c066 100%);

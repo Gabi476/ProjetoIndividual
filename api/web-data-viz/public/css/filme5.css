@@ -23,7 +23,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Alinha logo/título à esquerda e botão à direita */
     position: fixed;
     top: 0;
     left: 0;
@@ -51,7 +50,6 @@ body {
     display: flex;
     align-items: center;
     margin-left: 250px;
-    /* Aumenta a distância entre logo e links */
 }
 
 .l {
@@ -59,13 +57,11 @@ body {
     display: flex;
     gap: 2rem;
     margin-left: 150px;
-    /* Move todos os links para mais longe da logo */
 }
 
 
 .l a {
     margin-left: 0;
-    /* remove o espaçamento exagerado à esquerda de cada link */
     text-decoration: none;
     color: #fff;
     font-weight: 500;
@@ -153,11 +149,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
-/* .tinkef3{
-    display: flex;
-    margin-top: 8px;
-} */
 .tinkef3 p {
     display: flex;
     font-size: 20px;
@@ -300,9 +291,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Centraliza todo o conteúdo da seção */
     margin: 40px 0 0 0;
-    /* Remove o margin-left */
 }
 
 .musica h2 {
@@ -321,7 +310,6 @@ body {
     align-items: center;
     width: 350px;
     margin: 0 auto;
-    /* Centraliza horizontalmente */
     box-shadow: 0 4px 24px #0002;
     justify-content: center;
 }
@@ -403,7 +391,6 @@ body {
     align-items: center;
     justify-content: center;
     gap: 16px;
-    /* Reduz o espaço entre todos os elementos */
     width: 100%;
 }
 
@@ -424,7 +411,6 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    /* Deixa as setas e o texto mais próximos */
     margin-left: 0;
 }
 

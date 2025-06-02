@@ -60,12 +60,11 @@
                 <button onclick="submeter()" id="btnSubmeter">Enviar resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Próxima pergunta</button>
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Fazer novamente</button>
+                <!-- <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Fazer novamente</button> -->
             </div>
 
         </div>
 
-        <!-- Pontuação final, escondida até o fim do quiz -->
         <div id="pontuacaoFinalJogo" class="flex-colunar padding-8" style="display: none;">
             <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
                 <span id="spanPontuacaoFinal">***</span>
@@ -162,15 +161,12 @@
         },
 
 
-    ]
-    // variáveis globais    
+    ]  
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
-    //Mapeamento das alternativas
     const personagemPorAlternativa = {
         alternativaA: "Tinker Bell",
         alternativaB: "Vidia",
@@ -205,7 +201,6 @@
         numeroDaQuestaoAtual = index
         console.log("questaoAtual")
         console.log(questaoAtual)
-        // document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
         document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
         document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
@@ -214,7 +209,7 @@
     }
 
     function submeter() {
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+        const options = document.getElementsByName("option"); 
 
         let hasChecked = false
         for (let i = 0; i < options.length; i++) {
@@ -253,11 +248,11 @@
         desmarcarRadioButtons();
 
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            numeroDaQuestaoAtual++; // <-- Adicione esta linha
+            numeroDaQuestaoAtual++; 
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
         } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
             alert("Atenção... a próxima é a ultima questão!");
-            numeroDaQuestaoAtual++; // <-- Adicione esta linha
+            numeroDaQuestaoAtual++; 
             finalizarJogo();
         } else {
             finalizarJogo();
@@ -265,10 +260,8 @@
         limparCoresBackgroundOpcoes();
     }
     function limparCoresBackgroundOpcoes() {
-        // Se não quiser fazer nada, pode deixar vazio ou implementar a lógica de limpar cores dos botões
     }
     function tentarNovamente() {
-        // atualiza a página
         window.location.reload()
     }
 
@@ -283,14 +276,11 @@
         let personalidade = Object.keys(contagemPersonagens).reduce((a, b) => contagemPersonagens[a] > contagemPersonagens[b] ? a : b);
 
         let textoParaMensagemFinal = `Sua personalidade é: <b>${personalidade}</b>!`;
-
-        // Esconde o quiz e mostra o resultado centralizado
         document.getElementById('jogo').style.display = 'none';
         document.getElementById('resultadoFinal').style.display = 'flex';
 
         document.getElementById('mensagemFinal').innerHTML = textoParaMensagemFinal;
 
-        // Desabilita botões do quiz
         btnProx.disabled = true;
         btnSubmeter.disabled = true;
         btnTentarNovamente.disabled = false;
@@ -303,7 +293,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                idQuiz: 2, // quiz de personalidade
+                idQuiz: 2, 
                 fkUsuarioServer: fkUsuario,
                 personalidade: personalidade
             }),
@@ -322,7 +312,7 @@
             });
     }
     function voltarParaQuiz() {
-        window.location.href = "../dashboard/dashboard1.html"; // ajuste o caminho se necessário
+        window.location.href = "../dashboard/dashboard1.html"; 
     }
 
 </script>

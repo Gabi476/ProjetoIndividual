@@ -15,7 +15,6 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            /* Remove o scroll */
         }
 
         body {
@@ -283,7 +282,6 @@
                 </div>
                 <div class="fake-space"></div>
             </div>
-            <!-- Adicione este bloco para o gráfico -->
             <div class="grade">
                 <div class="chart-box">
                     <canvas id="grafico"></canvas>
@@ -295,7 +293,7 @@
             const fkUsuario = sessionStorage.ID_USUARIO;
             if (!fkUsuario) {
                 alert("Usuário não autenticado! Faça login novamente.");
-                window.location.href = "../../login.html"; // ajuste o caminho se necessário
+                window.location.href = "../../login.html"; 
             }
             b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             let chart;
@@ -303,7 +301,7 @@
             function mudarDash() {
                 const select = document.getElementById("selectDash");
                 if (select.value === "1") {
-                    window.location.href = "dashboard2.html"; // Corrija o nome do arquivo aqui
+                    window.location.href = "dashboard2.html"; 
                 } else if (select.value === "2") {
                     window.location.href = "dash3.html";
                 } else if (select.value === "3") {
@@ -335,8 +333,7 @@
             function carregarGrafico() {
                 fetch(`/dash2/${fkUsuario}`)
                     .then(res => res.json())
-                    .then(data => {
-                        // Filtra apenas tentativas válidas (resultado não nulo e maior que zero)
+                    .then(data => {            
                         const tentativasValidas = data.filter(item => item.resultado !== null && item.resultado > 0);
 
                         const acertos_usuario = document.getElementById("acertos-usuario");
@@ -346,12 +343,10 @@
                             alert(`Não há registros de outros usuários.`);
                             return;
                         }
-                        // Calcula a média dos resultados
                         const soma = tentativasValidas.reduce((acc, item) => acc + Number(item.resultado), 0);
                         const media = soma / tentativasValidas.length;
                         acertos_usuario.innerHTML = media.toFixed(2);
 
-                        // --- Gráfico ---
                         const usuarios = [...new Set(tentativasValidas.map(item => item.nome_usuario))];
                         const tentativasPorUsuario = {};
                         usuarios.forEach(usuario => {
@@ -373,7 +368,7 @@
 
                         if (chart) chart.destroy();
                         chart = new Chart(ctx, {
-                            type: 'bar', // ou 'bar' se preferir barras
+                            type: 'bar', 
                             data: {
                                 labels: labels,
                                 datasets: datasets

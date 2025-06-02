@@ -60,7 +60,7 @@
                 <button onclick="submeter()" id="btnSubmeter">Enviar resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Próxima pergunta</button>
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Fazer novamente</button>
+                <!-- <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Fazer novamente</button> -->
             </div>
 
         </div>
@@ -69,7 +69,6 @@
             <span class="width-fit-content">Erros: <span id="spanErradas"></span></span>
         </div>
 
-        <!-- Pontuação final, escondida até o fim do quiz -->
         <div id="pontuacaoFinalJogo" class="flex-colunar padding-8" style="display: none;">
             <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
                 <span id="spanPontuacaoFinal">***</span>
@@ -78,7 +77,6 @@
         </div>
     </div>
 </body>
-<!-- Div centralizada para o resultado final -->
 <div id="resultadoFinal" style="display:none;">
     <div class="resultado-final-box">
         <h2>Quiz Finalizado!</h2>
@@ -176,20 +174,18 @@
 
 
     ]
-
-    // variáveis globais    
+    
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     preencherHTMLcomQuestaoAtual(0)
 
     function voltarParaQuiz() {
-        window.location.href = "./quiz.html"; // ajuste o caminho se necessário
+        window.location.href = "./quiz.html"; 
     }
     function preencherHTMLcomQuestaoAtual(index) {
         habilitarAlternativas(true)
@@ -197,7 +193,6 @@
         numeroDaQuestaoAtual = index
         console.log("questaoAtual")
         console.log(questaoAtual)
-        // document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
         document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
         document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
@@ -206,7 +201,7 @@
     }
 
     function submeter() {
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+        const options = document.getElementsByName("option");
 
         let hasChecked = false
         for (let i = 0; i < options.length; i++) {
@@ -261,12 +256,12 @@
     }
 
     function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta 
 
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+        const options = document.getElementsByName("option");
 
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
+        let alternativaCorreta = null
 
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
@@ -275,7 +270,6 @@
             }
         })
 
-        // verifica se resposta assinalada é correta
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
@@ -342,7 +336,6 @@
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
 

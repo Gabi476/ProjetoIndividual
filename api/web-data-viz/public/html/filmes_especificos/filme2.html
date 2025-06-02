@@ -138,16 +138,16 @@
     </div>
     <div class="avaliacao">
         <p>Avalie o filme</p>
-        <div class="notas">
-            <span data-value="5" class="star full"></span>
-            <span data-value="4" class="star full"></span>
-            <span data-value="3" class="star full selected"></span>
-            <span data-value="2" class="star full selected"></span>
+        <div class="rating">
             <span data-value="1" class="star full selected"></span>
+            <span data-value="2" class="star full selected"></span>
+            <span data-value="3" class="star full selected"></span>
+            <span data-value="4" class="star full"></span>
+            <span data-value="5" class="star full"></span>
 
         </div>
-        <p>Nota: <span id="nota">3.5</span></p>
-        <button class="enviar">Enviar Avaliação</button>
+        <p>Nota: <span id="rating-value">3.5</span></p>
+        <button class="submit-rating">Enviar Avaliação</button>
     </div>
     <div class="proximo">
         <div class="seta">
@@ -190,7 +190,7 @@
     });
     document.querySelector('.submit-rating').addEventListener('click', () => {
         const nota = parseFloat(document.getElementById('rating-value').textContent);
-        const fkusuario = sessionStorage.ID_USUARIO; 
+        const fkusuario = sessionStorage.ID_USUARIO;
         const fkfilme = 2;
 
         fetch('/avaliacao', {

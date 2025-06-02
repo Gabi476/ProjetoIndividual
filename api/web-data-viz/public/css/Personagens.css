@@ -4,13 +4,10 @@ body {
     padding: 0;
     font-family: Georgia, serif;
     padding-top: 35px;
-    /* Compensa a altura da navbar fixa */
     overflow: hidden;
-    /* Permite scroll vertical, bloqueia só horizontal */
     background-color: rgb(4, 56, 4);
 }
 
-/* Mantém navbar fixa */
 .navbar {
     width: 96%;
     height: 70px;
@@ -50,7 +47,6 @@ body {
     display: flex;
     align-items: center;
     margin-left: 22%;
-    /* Aumenta a distância entre logo e links */
 }
 
 .l {
@@ -58,13 +54,11 @@ body {
     display: flex;
     gap: 2rem;
     margin-left: 100px;
-    /* Move todos os links para mais longe da logo */
 }
 
 
 .l a {
     margin-left: 0;
-    /* remove o espaçamento exagerado à esquerda de cada link */
     text-decoration: none;
     color: #fff;
     font-weight: 500;

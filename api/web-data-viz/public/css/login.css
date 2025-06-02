@@ -21,7 +21,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* Alinha logo/título à esquerda e botão à direita */
   position: fixed;
   top: 0;
   left: 0;
@@ -54,7 +53,6 @@ body {
   display: flex;
   align-items: center;
   margin-left: 250px;
-  /* Aumenta a distância entre logo e links */
 }
 
 .l {
@@ -62,13 +60,11 @@ body {
   display: flex;
   gap: 2rem;
   margin-left: 150px;
-  /* Move todos os links para mais longe da logo */
 }
 
 
 .l a {
   margin-left: 0;
-  /* remove o espaçamento exagerado à esquerda de cada link */
   text-decoration: none;
   color: #fff;
   font-weight: 500;
@@ -187,11 +183,8 @@ body {
   width: 55%;
   padding: 2rem;
   border-left: none;
-  /* ou simplesmente remova esta linha */
-  /* ...restante do código... */
 }
 
-/* Estilos para a div de carregamento */
 .loading-div {
   display: none;
   position: fixed;
@@ -209,7 +202,6 @@ body {
   height: 80px;
 }
 
-/* Esconder a div de erros de login inicialmente */
 #div_erros_login {
   display: none;
 }
