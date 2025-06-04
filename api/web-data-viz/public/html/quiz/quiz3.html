@@ -161,7 +161,7 @@
         },
 
 
-    ]  
+    ]
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
@@ -209,7 +209,7 @@
     }
 
     function submeter() {
-        const options = document.getElementsByName("option"); 
+        const options = document.getElementsByName("option");
 
         let hasChecked = false
         for (let i = 0; i < options.length; i++) {
@@ -248,11 +248,11 @@
         desmarcarRadioButtons();
 
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            numeroDaQuestaoAtual++; 
+            numeroDaQuestaoAtual++;
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
         } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
             alert("Atenção... a próxima é a ultima questão!");
-            numeroDaQuestaoAtual++; 
+            numeroDaQuestaoAtual++;
             finalizarJogo();
         } else {
             finalizarJogo();
@@ -273,7 +273,14 @@
     }
 
     function finalizarJogo() {
-        let personalidade = Object.keys(contagemPersonagens).reduce((a, b) => contagemPersonagens[a] > contagemPersonagens[b] ? a : b);
+        let personalidade = "";
+        let maiorContagem = -Infinity;
+        for (let personagem in contagemPersonagens) {
+            if (contagemPersonagens[personagem] > maiorContagem) {
+                maiorContagem = contagemPersonagens[personagem];
+                personalidade = personagem;
+            }
+        }
 
         let textoParaMensagemFinal = `Sua personalidade é: <b>${personalidade}</b>!`;
         document.getElementById('jogo').style.display = 'none';
@@ -293,7 +300,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                idQuiz: 2, 
+                idQuiz: 2,
                 fkUsuarioServer: fkUsuario,
                 personalidade: personalidade
             }),
@@ -312,7 +319,7 @@
             });
     }
     function voltarParaQuiz() {
-        window.location.href = "../dashboard/dashboard1.html"; 
+        window.location.href = "../dashboard/dashboard1.html";
     }
 
 </script>
