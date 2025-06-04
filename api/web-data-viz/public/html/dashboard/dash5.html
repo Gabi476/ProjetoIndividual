@@ -337,8 +337,12 @@
                 fetch('/dash5/medias')
                     .then(res => res.json())
                     .then(data => {
-                        const labels = data.map(item => item.nomefilme);
-                        const medias = data.map(item => Number(item.media));
+                        const labels = [];
+                        const medias = [];
+                        for (let i = 0; i < data.length; i++) {
+                            labels.push(data[i].nomefilme);
+                            medias.push(Number(data[i].media));
+                        }
                         if (window.chart) window.chart.destroy();
                         const ctx = document.getElementById('graficoMedias').getContext('2d');
                         window.chart = new Chart(ctx, {
@@ -357,17 +361,17 @@
                                 plugins: {
                                     legend: {
                                         labels: {
-                                            color: '#fff' 
+                                            color: '#fff'
                                         }
                                     }
                                 },
                                 scales: {
                                     x: {
-                                        ticks: { color: '#fff' }, 
+                                        ticks: { color: '#fff' },
                                         grid: { color: '#fff2' }
                                     },
                                     y: {
-                                        ticks: { color: '#fff' }, 
+                                        ticks: { color: '#fff' },
                                         grid: { color: '#fff2' }
                                     }
                                 }

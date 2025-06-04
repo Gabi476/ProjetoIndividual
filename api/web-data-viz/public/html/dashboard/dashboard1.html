@@ -263,9 +263,15 @@
                         return;
                     }
 
-                    const labels = data.map((_, index) => `Tentativa ${index + 1}`);
-                    const pontuacoes = data.map(pontuacoes => pontuacoes.resultado);
-                    const erros = pontuacoes.map(ponto => 10 - ponto);
+                    const labels = [];
+                    const pontuacoes = [];
+                    const erros = [];
+
+                    for (let i = 0; i < data.length; i++) {
+                        labels.push(`Tentativa ${i + 1}`);
+                        pontuacoes.push(data[i].resultado);
+                        erros.push(10 - data[i].resultado);
+                    }
 
                     console.log(pontuacoes, erros);
 

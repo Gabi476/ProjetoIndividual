@@ -293,7 +293,7 @@
             const fkUsuario = sessionStorage.ID_USUARIO;
             if (!fkUsuario) {
                 alert("Usuário não autenticado! Faça login novamente.");
-                window.location.href = "../../login.html"; 
+                window.location.href = "../../login.html";
             }
             b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             let chart;
@@ -301,7 +301,7 @@
             function mudarDash() {
                 const select = document.getElementById("selectDash");
                 if (select.value === "1") {
-                    window.location.href = "dashboard2.html"; 
+                    window.location.href = "dashboard2.html";
                 } else if (select.value === "2") {
                     window.location.href = "dash3.html";
                 } else if (select.value === "3") {
@@ -333,7 +333,7 @@
             function carregarGrafico() {
                 fetch(`/dash2/${fkUsuario}`)
                     .then(res => res.json())
-                    .then(data => {            
+                    .then(data => {
                         const tentativasValidas = data.filter(item => item.resultado !== null && item.resultado > 0);
 
                         const acertos_usuario = document.getElementById("acertos-usuario");
@@ -347,7 +347,13 @@
                         const media = soma / tentativasValidas.length;
                         acertos_usuario.innerHTML = media.toFixed(2);
 
-                        const usuarios = [...new Set(tentativasValidas.map(item => item.nome_usuario))];
+                        const usuarios = [];
+                        for (let i = 0; i < tentativasValidas.length; i++) {
+                            const nome = tentativasValidas[i].nome_usuario;
+                            if (!usuarios.includes(nome)) {
+                                usuarios.push(nome);
+                            }
+                        }
                         const tentativasPorUsuario = {};
                         usuarios.forEach(usuario => {
                             tentativasPorUsuario[usuario] = tentativasValidas
@@ -355,20 +361,38 @@
                                 .map(item => item.resultado);
                         });
 
-                        const maxTentativas = Math.max(...Object.values(tentativasPorUsuario).map(arr => arr.length));
-                        const labels = Array.from({ length: maxTentativas }, (_, i) => `Tentativa ${i + 1}`);
-
+                        let maxTentativas = 0; //Guarda o, maior número de tentativas
+                        for (let usuario in tentativasPorUsuario) { //Percorre os nomes do usuários em tentativas
+                            const tentativas = tentativasPorUsuario[usuario].length; //Calcula o tamanho da array de tentativas
+                            if (tentativas > maxTentativas) { //Se o numero de tentativas for maior que o máximo atual
+                                maxTentativas = tentativas; //Atualiza para o novo valor como máximo
+                            }
+                        }
+                        const labels = [];
+                        for (let i = 0; i < maxTentativas; i++) {
+                            labels.push(`Tentativa ${i + 1}`);
+                        }
+                        const cores = [
+                            '#71b63c98', 
+                            '#3c8bb69f', 
+                            '#b63c3cb1',  
+                            '#b6a23ca5',  
+                            '#8d3cb6bb',  
+                            '#3cb68c',   
+                            '#b63c8c',   
+                            '#3c4ab6',   
+                        ];
                         const datasets = usuarios.map((usuario, idx) => ({
                             label: usuario,
                             data: tentativasPorUsuario[usuario],
-                            backgroundColor: `#70b63c`,
-                            borderColor: `#70b63c`,
+                            backgroundColor: cores[idx % cores.length],
+                            borderColor: cores[idx % cores.length],
                             borderWidth: 2
                         }));
 
                         if (chart) chart.destroy();
                         chart = new Chart(ctx, {
-                            type: 'bar', 
+                            type: 'bar',
                             data: {
                                 labels: labels,
                                 datasets: datasets

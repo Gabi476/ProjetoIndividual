@@ -6,7 +6,6 @@ function contarGenero() {
             CASE 
                 WHEN LOWER(genero) = 'feminino' THEN 'Mulheres'
                 WHEN LOWER(genero) = 'masculino' THEN 'Homens'
-                ELSE 'Outro'
             END AS genero_label,
             COUNT(*) AS quantidade
         FROM usuario

@@ -308,8 +308,12 @@
             fetch('/dash3/personalidades')
                 .then(res => res.json())
                 .then(data => {
-                    const labels = data.map(item => item.personalidade);
-                    const valores = data.map(item => item.quantidade);
+                    const labels = [];
+                    const valores = [];
+                    for (let i = 0; i < data.length; i++) {
+                        labels.push(data[i].personalidade);
+                        valores.push(data[i].quantidade);
+                    }
                     const total = valores.reduce((a, b) => a + b, 0);
 
                     new Chart(document.getElementById('graficoPizza'), {

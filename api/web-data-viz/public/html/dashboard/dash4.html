@@ -342,8 +342,12 @@
                     fetch('/dash4/genero')
                         .then(res => res.json())
                         .then(data => {
-                            const labels = data.map(item => item.genero_label);
-                            const valores = data.map(item => item.quantidade);
+                            const labels = [];
+                            const valores = [];
+                            for (let i = 0; i < data.length; i++) {
+                                labels.push(data[i].genero_label);
+                                valores.push(data[i].quantidade);
+                            }
                             chart = new Chart(grafico, {
                                 type: 'pie',
                                 data: {
@@ -371,8 +375,12 @@
                     fetch('/dash4/idade')
                         .then(res => res.json())
                         .then(data => {
-                            const labels = data.map(item => item.faixa_etaria);
-                            const valores = data.map(item => item.quantidade);
+                            const labels = [];
+                            const valores = [];
+                            for (let i = 0; i < data.length; i++) {
+                                labels.push(data[i].faixa_etaria);
+                                valores.push(data[i].quantidade);
+                            }
                             chart.width = 500;
                             chart = new Chart(grafico, {
                                 type: 'bar',
@@ -389,25 +397,25 @@
                                     plugins: {
                                         legend: {
                                             labels: {
-                                                color: '#fff' 
+                                                color: '#fff'
                                             }
                                         }
                                     },
                                     scales: {
                                         x: {
                                             ticks: {
-                                                color: '#fff' 
+                                                color: '#fff'
                                             },
                                             grid: {
-                                                color: '#888' 
+                                                color: '#888'
                                             }
                                         },
                                         y: {
                                             ticks: {
-                                                color: '#fff' 
+                                                color: '#fff'
                                             },
                                             grid: {
-                                                color: '#888' 
+                                                color: '#888'
                                             }
                                         }
                                     }
